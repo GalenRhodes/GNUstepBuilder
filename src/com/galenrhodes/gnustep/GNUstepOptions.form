@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.galenrhodes.gnustep.GNUstepOptions">
+  <grid id="27dc6" binding="optionsPanel" layout-manager="GridLayoutManager" row-count="25" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="559" height="739"/>
+    </constraints>
+    <properties>
+      <name value="optionsPanel"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <vspacer id="61590">
+        <constraints>
+          <grid row="24" column="0" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="58ece" class="javax.swing.JCheckBox" binding="installPrerequisitSoftwarePackagesCheckBox" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Install Prerequisit Software Packages"/>
+        </properties>
+      </component>
+      <component id="f74ad" class="javax.swing.JCheckBox" binding="installLibkqueueCheckBox" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Install libkqueue"/>
+        </properties>
+      </component>
+      <component id="a3201" class="javax.swing.JCheckBox" binding="createEntriesInLdSoConfDCheckBox">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Create Entries in /etc/ld.so.conf.d/"/>
+        </properties>
+      </component>
+      <component id="e2d41" class="javax.swing.JCheckBox" binding="useLibdispatchFromSWIFTCheckBox" default-binding="true">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Use libdispatch from SWIFT project"/>
+        </properties>
+      </component>
+      <component id="60814" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="17" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="GNUstep Options"/>
+        </properties>
+      </component>
+      <component id="218ea" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="LLVM/CLANG Options"/>
+        </properties>
+      </component>
+      <component id="34e97" class="javax.swing.JCheckBox" binding="buildLatestLLVMCLANGCheckBox" default-binding="true">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Build latest LLVM/CLANG"/>
+        </properties>
+      </component>
+      <component id="27a66" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Dispatch and Objective-C 2.0 Runtime"/>
+        </properties>
+      </component>
+      <component id="8d2ea" class="javax.swing.JCheckBox" binding="buildLibdispatchFirstCheckBox">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Build libdispatch first then libobjc2"/>
+        </properties>
+      </component>
+      <component id="2a529" class="javax.swing.JRadioButton" binding="a20RadioButton" default-binding="true">
+        <constraints>
+          <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="2.0"/>
+        </properties>
+      </component>
+      <component id="aa0fa" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Version"/>
+        </properties>
+      </component>
+      <component id="b0bd2" class="javax.swing.JRadioButton" binding="a18RadioButton" default-binding="true">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="false"/>
+          <text value="1.8"/>
+        </properties>
+      </component>
+      <component id="9a6a0" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Install Directory"/>
+        </properties>
+      </component>
+      <component id="7e5f8" class="javax.swing.JTextField" binding="installPathTextField">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="/opt/objc2"/>
+        </properties>
+      </component>
+      <component id="b1300" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Targets"/>
+        </properties>
+      </component>
+      <component id="83f64" class="javax.swing.JCheckBox" binding="archX86_64CheckBox">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="x86_64"/>
+        </properties>
+      </component>
+      <component id="dde06" class="javax.swing.JCheckBox" binding="archARM32CheckBox">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="ARM 32"/>
+        </properties>
+      </component>
+      <component id="ecac6" class="javax.swing.JCheckBox" binding="archARM64CheckBox">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="ARM 64"/>
+        </properties>
+      </component>
+      <component id="34420" class="javax.swing.JToolBar$Separator">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="dfe7b" class="javax.swing.JToolBar$Separator">
+        <constraints>
+          <grid row="16" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="4087b" class="javax.swing.JToolBar$Separator">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="3205" class="javax.swing.JButton" binding="findButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <defaultCapable value="false"/>
+          <text value="&amp;Find"/>
+        </properties>
+      </component>
+      <component id="97d12" class="javax.swing.JTextField" binding="objc2CustomNameTextField">
+        <constraints>
+          <grid row="14" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="objc2"/>
+        </properties>
+      </component>
+      <component id="2b94d" class="javax.swing.JRadioButton" binding="a19RadioButton" default-binding="true">
+        <constraints>
+          <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="false"/>
+          <text value="1.9"/>
+        </properties>
+      </component>
+      <component id="35fbf" class="javax.swing.JCheckBox" binding="objc2CustomNameCheckBox">
+        <constraints>
+          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Custom Lib Name"/>
+        </properties>
+      </component>
+      <hspacer id="76427">
+        <constraints>
+          <grid row="17" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="25c0d" class="javax.swing.JCheckBox" binding="objectiveCARCCheckBox" default-binding="true">
+        <constraints>
+          <grid row="18" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Objective-C ARC"/>
+        </properties>
+      </component>
+      <component id="d8b55" class="javax.swing.JCheckBox" binding="buildGNUstepMakeTwiceCheckBox" default-binding="true">
+        <constraints>
+          <grid row="18" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Build GNUstep Make Twice"/>
+        </properties>
+      </component>
+      <component id="35131" class="javax.swing.JCheckBox" binding="debugByDefaultCheckBox" default-binding="true">
+        <constraints>
+          <grid row="19" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Debug by Default"/>
+        </properties>
+      </component>
+      <component id="ecfa2" class="javax.swing.JCheckBox" binding="noMixedABICheckBox" default-binding="true">
+        <constraints>
+          <grid row="19" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="No Mixed ABI"/>
+        </properties>
+      </component>
+      <component id="2c1f8" class="javax.swing.JCheckBox" binding="nativeObjectiveCExceptionsCheckBox" default-binding="true">
+        <constraints>
+          <grid row="20" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Native Objective-C Exceptions"/>
+        </properties>
+      </component>
+      <component id="e0f28" class="javax.swing.JCheckBox" binding="useNonFragileABICheckBox" default-binding="true">
+        <constraints>
+          <grid row="20" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Use Non-Fragile ABI"/>
+        </properties>
+      </component>
+      <component id="5cd16" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="21" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Library Combo"/>
+        </properties>
+      </component>
+      <component id="a7e0a" class="javax.swing.JComboBox" binding="libComboADropDown">
+        <constraints>
+          <grid row="21" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <model>
+            <item value="ng"/>
+            <item value="gnu"/>
+            <item value="apple"/>
+          </model>
+        </properties>
+      </component>
+      <component id="aff1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Layout"/>
+        </properties>
+      </component>
+      <component id="a1513" class="javax.swing.JComboBox" binding="filesystemLayoutDropDown">
+        <constraints>
+          <grid row="22" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <model>
+            <item value="fhs"/>
+            <item value="fhs-system"/>
+            <item value="apple"/>
+            <item value="gnustep"/>
+            <item value="gnustep-with-network"/>
+            <item value="debian"/>
+            <item value="mac"/>
+            <item value="next"/>
+            <item value="standalone"/>
+          </model>
+        </properties>
+      </component>
+      <component id="6b649" class="javax.swing.JCheckBox" binding="buildGoogleTestCheckBox" default-binding="true">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Build Google Test"/>
+        </properties>
+      </component>
+      <component id="fa1f0" class="javax.swing.JComboBox" binding="libComboBDropDown">
+        <constraints>
+          <grid row="21" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <model>
+            <item value="gnu"/>
+            <item value="apple"/>
+          </model>
+        </properties>
+      </component>
+      <component id="12d6f" class="javax.swing.JComboBox" binding="libComboCDown">
+        <constraints>
+          <grid row="21" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <model>
+            <item value="gnu"/>
+            <item value="apple"/>
+          </model>
+        </properties>
+      </component>
+      <grid id="cd5f0" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="23" column="2" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="6712" class="javax.swing.JButton" binding="helpButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <defaultCapable value="false"/>
+              <text value="&amp;Help"/>
+            </properties>
+          </component>
+          <hspacer id="9f176">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="23530" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <defaultCapable value="false"/>
+              <text value="&amp;Cancel"/>
+            </properties>
+          </component>
+          <component id="d0b15" class="javax.swing.JButton" binding="startButton">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <selected value="false"/>
+              <text value="&amp;Start"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="f3e9e" class="javax.swing.JCheckBox" binding="oldABICompatabilityCheckBox" default-binding="true">
+        <constraints>
+          <grid row="15" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Old ABI Compatability"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="objcRuntimeVersionButtonGroup">
+      <member id="2b94d"/>
+      <member id="2a529"/>
+      <member id="b0bd2"/>
+    </group>
+  </buttonGroups>
+</form>
