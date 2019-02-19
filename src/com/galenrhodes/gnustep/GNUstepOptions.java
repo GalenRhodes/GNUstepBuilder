@@ -110,29 +110,6 @@ public class GNUstepOptions {
         });
     }
 
-    public void setData(BuildOptions data) {
-        installPrerequisitSoftwarePackagesCheckBox.setSelected(data.isInstallPrereq());
-        installLibkqueueCheckBox.setSelected(data.isInstallLibKQueue());
-        createEntriesInLdSoConfDCheckBox.setSelected(data.isCreateEntriesInLdSoConfigDir());
-        useLibdispatchFromSWIFTCheckBox.setSelected(data.isUseSwiftLibDispatch());
-        buildLatestLLVMCLANGCheckBox.setSelected(data.isBuildLatestLLVM());
-        buildLibdispatchFirstCheckBox.setSelected(data.isBuildLibDispatchFirst());
-        installPathTextField.setText(data.getInstallPath());
-        archX86_64CheckBox.setSelected(data.isArchX32_64());
-        archARM32CheckBox.setSelected(data.isArchARM32());
-        archARM64CheckBox.setSelected(data.isArchARM64());
-        objc2CustomNameTextField.setText(data.getObjcLibName());
-        objc2CustomNameCheckBox.setSelected(data.isCustomLIbName());
-        objectiveCARCCheckBox.setSelected(data.isObjcARC());
-        buildGNUstepMakeTwiceCheckBox.setSelected(data.isBuildMakeTwice());
-        debugByDefaultCheckBox.setSelected(data.isDebugByDefault());
-        noMixedABICheckBox.setSelected(data.isNoMixedABI());
-        nativeObjectiveCExceptionsCheckBox.setSelected(data.isNativeObjcExceptions());
-        useNonFragileABICheckBox.setSelected(data.isNonFragileABI());
-        buildGoogleTestCheckBox.setSelected(data.isBuildGTest());
-        oldABICompatabilityCheckBox.setSelected(data.isOldABICompat());
-    }
-
     public void getData(BuildOptions data) {
         data.setInstallPrereq(installPrerequisitSoftwarePackagesCheckBox.isSelected());
         data.setInstallLibKQueue(installLibkqueueCheckBox.isSelected());
@@ -157,27 +134,50 @@ public class GNUstepOptions {
     }
 
     public boolean isModified(BuildOptions data) {
-        if (installPrerequisitSoftwarePackagesCheckBox.isSelected() != data.isInstallPrereq()) return true;
-        if (installLibkqueueCheckBox.isSelected() != data.isInstallLibKQueue()) return true;
-        if (createEntriesInLdSoConfDCheckBox.isSelected() != data.isCreateEntriesInLdSoConfigDir()) return true;
-        if (useLibdispatchFromSWIFTCheckBox.isSelected() != data.isUseSwiftLibDispatch()) return true;
-        if (buildLatestLLVMCLANGCheckBox.isSelected() != data.isBuildLatestLLVM()) return true;
-        if (buildLibdispatchFirstCheckBox.isSelected() != data.isBuildLibDispatchFirst()) return true;
-        if (installPathTextField.getText() != null ? !installPathTextField.getText().equals(data.getInstallPath()) : data.getInstallPath() != null)
-            return true;
-        if (archX86_64CheckBox.isSelected() != data.isArchX32_64()) return true;
-        if (archARM32CheckBox.isSelected() != data.isArchARM32()) return true;
-        if (archARM64CheckBox.isSelected() != data.isArchARM64()) return true;
-        if (objc2CustomNameTextField.getText() != null ? !objc2CustomNameTextField.getText().equals(data.getObjcLibName()) : data.getObjcLibName() != null)
-            return true;
-        if (objc2CustomNameCheckBox.isSelected() != data.isCustomLIbName()) return true;
-        if (objectiveCARCCheckBox.isSelected() != data.isObjcARC()) return true;
-        if (buildGNUstepMakeTwiceCheckBox.isSelected() != data.isBuildMakeTwice()) return true;
-        if (debugByDefaultCheckBox.isSelected() != data.isDebugByDefault()) return true;
-        if (noMixedABICheckBox.isSelected() != data.isNoMixedABI()) return true;
-        if (nativeObjectiveCExceptionsCheckBox.isSelected() != data.isNativeObjcExceptions()) return true;
-        if (useNonFragileABICheckBox.isSelected() != data.isNonFragileABI()) return true;
-        if (buildGoogleTestCheckBox.isSelected() != data.isBuildGTest()) return true;
-        return oldABICompatabilityCheckBox.isSelected() != data.isOldABICompat();
+        if(installPrerequisitSoftwarePackagesCheckBox.isSelected() != data.isInstallPrereq()) return true;
+        if(installLibkqueueCheckBox.isSelected() != data.isInstallLibKQueue()) return true;
+        if(createEntriesInLdSoConfDCheckBox.isSelected() != data.isCreateEntriesInLdSoConfigDir()) return true;
+        if(useLibdispatchFromSWIFTCheckBox.isSelected() != data.isUseSwiftLibDispatch()) return true;
+        if(buildLatestLLVMCLANGCheckBox.isSelected() != data.isBuildLatestLLVM()) return true;
+        if(buildLibdispatchFirstCheckBox.isSelected() != data.isBuildLibDispatchFirst()) return true;
+        if(installPathTextField.getText() != null ? !installPathTextField.getText().equals(data.getInstallPath()) : data.getInstallPath() != null) return true;
+        if(archX86_64CheckBox.isSelected() != data.isArchX32_64()) return true;
+        if(archARM32CheckBox.isSelected() != data.isArchARM32()) return true;
+        if(archARM64CheckBox.isSelected() != data.isArchARM64()) return true;
+        if(objc2CustomNameTextField.getText() != null ? !objc2CustomNameTextField.getText().equals(data.getObjcLibName()) : data.getObjcLibName() != null) return true;
+        if(objc2CustomNameCheckBox.isSelected() != data.isCustomLIbName()) return true;
+        if(objectiveCARCCheckBox.isSelected() != data.isObjcARC()) return true;
+        if(buildGNUstepMakeTwiceCheckBox.isSelected() != data.isBuildMakeTwice()) return true;
+        if(debugByDefaultCheckBox.isSelected() != data.isDebugByDefault()) return true;
+        if(noMixedABICheckBox.isSelected() != data.isNoMixedABI()) return true;
+        if(nativeObjectiveCExceptionsCheckBox.isSelected() != data.isNativeObjcExceptions()) return true;
+        if(useNonFragileABICheckBox.isSelected() != data.isNonFragileABI()) return true;
+        if(buildGoogleTestCheckBox.isSelected() != data.isBuildGTest()) return true;
+        if(oldABICompatabilityCheckBox.isSelected() != data.isOldABICompat()) return true;
+        return false;
     }
+
+    public void setData(BuildOptions data) {
+        installPrerequisitSoftwarePackagesCheckBox.setSelected(data.isInstallPrereq());
+        installLibkqueueCheckBox.setSelected(data.isInstallLibKQueue());
+        createEntriesInLdSoConfDCheckBox.setSelected(data.isCreateEntriesInLdSoConfigDir());
+        useLibdispatchFromSWIFTCheckBox.setSelected(data.isUseSwiftLibDispatch());
+        buildLatestLLVMCLANGCheckBox.setSelected(data.isBuildLatestLLVM());
+        buildLibdispatchFirstCheckBox.setSelected(data.isBuildLibDispatchFirst());
+        installPathTextField.setText(data.getInstallPath());
+        archX86_64CheckBox.setSelected(data.isArchX32_64());
+        archARM32CheckBox.setSelected(data.isArchARM32());
+        archARM64CheckBox.setSelected(data.isArchARM64());
+        objc2CustomNameTextField.setText(data.getObjcLibName());
+        objc2CustomNameCheckBox.setSelected(data.isCustomLIbName());
+        objectiveCARCCheckBox.setSelected(data.isObjcARC());
+        buildGNUstepMakeTwiceCheckBox.setSelected(data.isBuildMakeTwice());
+        debugByDefaultCheckBox.setSelected(data.isDebugByDefault());
+        noMixedABICheckBox.setSelected(data.isNoMixedABI());
+        nativeObjectiveCExceptionsCheckBox.setSelected(data.isNativeObjcExceptions());
+        useNonFragileABICheckBox.setSelected(data.isNonFragileABI());
+        buildGoogleTestCheckBox.setSelected(data.isBuildGTest());
+        oldABICompatabilityCheckBox.setSelected(data.isOldABICompat());
+    }
+
 }
