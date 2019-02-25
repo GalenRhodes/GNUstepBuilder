@@ -36,4 +36,19 @@ public class Tools {
         return -1;
     }
 
+    public static void runFind() {
+        try {
+            ProcessCmd pb = new ProcessCmd("find", "/usr", "-name", "*.h");
+            int        rc = pb.waitFor();
+
+            System.out.println(pb.getOutput());
+            System.err.println(pb.getError());
+
+            System.out.printf("\nProgram exited with return code: %d\n", rc);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
