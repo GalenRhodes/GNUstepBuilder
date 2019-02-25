@@ -33,7 +33,7 @@ public class BuildOptions implements Serializable {
     private boolean archX32_64 = true;
 
     private boolean buildGTest                   = false;
-    private boolean buildLatestLLVM              = false;
+    private boolean buildLatestLLVM              = true;
     private boolean buildLibDispatchFirst        = true;
     private boolean buildMakeTwice               = true;
     private boolean createEntriesInLdSoConfigDir = true;
@@ -295,7 +295,7 @@ public class BuildOptions implements Serializable {
         this.filesystemLayout = (Tools.contains(filesystemLayout, FILESYSTEM_LAYOUTS) ? filesystemLayout : FILESYSTEM_LAYOUTS[0]);
     }
 
-    private static String getLibraryComboDefault(String v) {
+    public static String getLibraryComboDefault(String v) {
         return v.split(COMBO_DELIMITER_PATTERN)[0];
     }
 
