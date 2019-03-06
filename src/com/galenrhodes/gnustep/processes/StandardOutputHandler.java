@@ -1,6 +1,6 @@
-package com.galenrhodes.gnustep;
+package com.galenrhodes.gnustep.processes;
 
-public interface Caliphate {
+public interface StandardOutputHandler {
 
     void handleSingleLine(final StringBuilder sb, String line, boolean isErr);
 

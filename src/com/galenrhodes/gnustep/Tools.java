@@ -1,5 +1,7 @@
 package com.galenrhodes.gnustep;
 
+import com.galenrhodes.gnustep.processes.ProcessCmd;
+
 import javax.swing.*;
 
 public class Tools {
