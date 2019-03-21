@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  Log4j Configuration                                                  -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!--  -->
+
+<!--
+   | For more configuration information and examples see the Jakarta Log4j
+   | website: http://jakarta.apache.org/log4j
+-->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <!-- file appender -->
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="QueueErrorReporter.log"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <param name="MaxFileSize" value="50MB"/>
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date Priority [Category] Thread Message -->
+            <param name="ConversionPattern" value="[%d{ISO8601}] [%t] [%-5p] %c: %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- console appender -->
+    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date Priority [Category] Message -->
+            <param name="ConversionPattern" value="[%d{ISO8601}] [%t] [%-5p] %c: %m%n"/>
+        </layout>
+    </appender>
+
+
+    <category name="com.mtb.mdm">
+        <priority value="DEBUG"/>
+    </category>
+
+    <root>
+        <!-- appender-ref ref="fileAppender"/ -->
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</log4j:configuration>

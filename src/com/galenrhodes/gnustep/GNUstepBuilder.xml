@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <comment>Properties file for GNUstepBuilder</comment>
+
+    <entry key="com.galenrhodes.log4j.conf.path">/log4j2.xml</entry>
+
+    <entry key="com.galenrhodes.gnustepbuilder.FilesystemLayouts">fhs|fhs-system|gnustep|gnustep-with-network|debian|apple|mac|next|standalone</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartA">ng|gnu|apple</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartB">gnu|apple</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartC">gnu|apple</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.DefaultInstallPath">/opt/objc2</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.DefaultLibName">objc2</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.BadComboTestPattern">(\w+)-(\w+)-(\w+)</entry>
+    <entry key="com.galenrhodes.gnustepbuilder.ComboFormat">%s-%s-%s</entry>
+
+    <entry key="com.galenrhodes.gnustepbuilder.ListSeparatorPattern">\s*\|\s*</entry>
+
+    <entry key="com.galenrhodes.gnustepbuilder.DefaultWorkingPath">~/Downloads/gnustep</entry>
+
+</properties>

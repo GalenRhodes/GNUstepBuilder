@@ -1,6 +1,7 @@
 package com.galenrhodes.gnustep.processes;
 
 import com.galenrhodes.gnustep.events.EventEngine;
+import com.galenrhodes.gnustep.processes.ProcessEvent.ProcessEventType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ProcessCmd implements StandardOutputHandler {
+public class ProcessCmd implements ProcessOutputHandler {
 
     private static final ExecutorService tp = Executors.newCachedThreadPool();
 
@@ -18,7 +19,7 @@ public class ProcessCmd implements StandardOutputHandler {
     private final ProcessBuilder processBuilder;
 
     private EventEngine<ProcessEvent, ProcessListener> eventEngine;
-    private StandardOutputHandler                      outputHandler;
+    private ProcessOutputHandler                       outputHandler;
     private boolean                                    wasInterrupted;
     private Process                                    process;
 
@@ -26,7 +27,7 @@ public class ProcessCmd implements StandardOutputHandler {
         this(exec, workingDir, Collections.emptyMap(), null, args);
     }
 
-    public ProcessCmd(String exec, File workingDir, StandardOutputHandler outputHandler, String... args) throws Exception {
+    public ProcessCmd(String exec, File workingDir, ProcessOutputHandler outputHandler, String... args) throws Exception {
         this(exec, workingDir, Collections.emptyMap(), outputHandler, args);
     }
 
@@ -34,7 +35,7 @@ public class ProcessCmd implements StandardOutputHandler {
         this(exec, null, Collections.emptyMap(), null, args);
     }
 
-    public ProcessCmd(String exec, StandardOutputHandler outputHandler, String... args) throws Exception {
+    public ProcessCmd(String exec, ProcessOutputHandler outputHandler, String... args) throws Exception {
         this(exec, null, Collections.emptyMap(), outputHandler, args);
     }
 
@@ -42,7 +43,7 @@ public class ProcessCmd implements StandardOutputHandler {
         this(exec, workingDir, env, null, args);
     }
 
-    public ProcessCmd(String exec, File workingDir, Map<String, String> env, StandardOutputHandler outputHandler, String... args) throws Exception {
+    public ProcessCmd(String exec, File workingDir, Map<String, String> env, ProcessOutputHandler outputHandler, String... args) throws Exception {
         super();
         this.wasInterrupted = false;
         this.sbOut = new StringBuilder();
@@ -97,6 +98,29 @@ public class ProcessCmd implements StandardOutputHandler {
         eventEngine.removeEventListener(listener);
     }
 
+    public void start() throws IOException {
+        process = processBuilder.start();
+
+        tp.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                int exitCode = 0;
+                wasInterrupted = false;
+                try { exitCode = process.waitFor(); } catch(InterruptedException ignored) { wasInterrupted = true; }
+                eventEngine.asyncPublishEvent(new ProcessEvent(ProcessCmd.this, ProcessEventType.PROCESS_END, wasInterrupted ? -1 : exitCode));
+                return true;
+            }
+        });
+        tp.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() { return readStream(process.getInputStream(), sbOut, false); }
+        });
+        tp.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() { return readStream(process.getErrorStream(), sbErr, true); }
+        });
+    }
+
     public int waitFor() {
         try {
             return process.waitFor();
@@ -134,26 +158,6 @@ public class ProcessCmd implements StandardOutputHandler {
                 }
             }
         };
-        process = processBuilder.start();
-
-        tp.submit(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                int exitCode = 0;
-                wasInterrupted = false;
-                try { exitCode = process.waitFor(); } catch(InterruptedException ignored) { wasInterrupted = true; }
-                eventEngine.asyncPublishEvent(new ProcessEvent(ProcessCmd.this, ProcessEvent.ProcessEventType.PROCESS_END, wasInterrupted ? -1 : exitCode));
-                return true;
-            }
-        });
-        tp.submit(new Callable<Boolean>() {
-            @Override
-            public Boolean call() { return readStream(process.getInputStream(), sbOut, false); }
-        });
-        tp.submit(new Callable<Boolean>() {
-            @Override
-            public Boolean call() { return readStream(process.getErrorStream(), sbErr, true); }
-        });
     }
 
     private boolean readStream(InputStream instr, final StringBuilder sb, boolean isErr) {
@@ -162,6 +166,9 @@ public class ProcessCmd implements StandardOutputHandler {
                 String line = br.readLine();
 
                 while(line != null) {
+                    ProcessEvent event = new ProcessEvent(this, isErr ? ProcessEventType.STDERR_LINE_RCVD : ProcessEventType.STDOUT_LINE_RCVD, line);
+                    eventEngine.asyncPublishEvent(event);
+
                     //noinspection SynchronizationOnLocalVariableOrMethodParameter
                     synchronized(sb) { outputHandler.handleSingleLine(sb, line, isErr); }
                     line = br.readLine();
