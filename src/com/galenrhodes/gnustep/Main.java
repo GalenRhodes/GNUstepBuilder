@@ -1,5 +1,9 @@
 package com.galenrhodes.gnustep;
 
+import com.galenrhodes.gnustep.builder.Builder;
+import com.galenrhodes.gnustep.builder.GNUstepBuilder;
+import com.galenrhodes.gnustep.options.BuildOptions;
+import com.galenrhodes.gnustep.options.GNUstepOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +21,7 @@ public class Main {
     private BuildOptions    buildOptions;
     private GNUstepOptions  optionsWindow;
     private GNUstepBuilder  builderWindow;
-    private Future<Integer> ftask;
+    private Future<Builder> ftask;
     private ExecutorService executor;
     private JFrame          builderFrame;
     private JFrame          optionsFrame;
@@ -26,16 +30,24 @@ public class Main {
     private Main() {
         super();
         executor = Executors.newCachedThreadPool();
-        log.debug("Hello World!");
+        args = new String[0];
+    }
+
+    public JFrame getBuilderFrame() {
+        return builderFrame;
+    }
+
+    public ExecutorService getExecutor() {
+        return executor;
     }
 
     public void openBuilderWindow() {
         builderWindow = new GNUstepBuilder();
-        builderFrame = new JFrame("GNUstep Builder");
+        builderFrame = new JFrame("GNUstep Builder - Building...");
         builderFrame.pack();
         builderFrame.setSize(800, 600);
         builderFrame.setResizable(false);
-        builderFrame.getContentPane().add(builderWindow.getBuilderStatus());
+        builderWindow.addToFrame(builderFrame);
         builderFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         builderFrame.setLocationRelativeTo(null);
         builderFrame.setVisible(true);
@@ -70,19 +82,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        try {
-            /* UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel"); */
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch(Exception ignored) {}
-        }
-
+        setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // "javax.swing.plaf.nimbus.NimbusLookAndFeel"
         SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run() { Main.getInstance(args).openOptionsWindow();}
+            public void run() { Main.getInstance(args).openOptionsWindow(); }
         });
+    }
+
+    private static void setLookAndFeel(String lookAndFeelClassName) {
+        try { UIManager.setLookAndFeel(lookAndFeelClassName); }
+        catch(Exception e) { try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch(Exception ignored) {} }
     }
 
     private static Main getInstance(String[] args) {

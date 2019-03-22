@@ -1,4 +1,4 @@
-package com.galenrhodes.gnustep.processes;
+package com.galenrhodes.gnustep.common.processes;
 
 import java.util.EventObject;
 

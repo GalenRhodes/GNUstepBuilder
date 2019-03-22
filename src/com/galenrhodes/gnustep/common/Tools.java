@@ -1,14 +1,27 @@
-package com.galenrhodes.gnustep;
+package com.galenrhodes.gnustep.common;
 
-import com.galenrhodes.gnustep.processes.ProcessCmd;
+import com.galenrhodes.gnustep.common.processes.ProcessCmd;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
 public class Tools {
 
     private Tools() {}
+
+    public static final void invokeAndWait(Runnable r) {
+        try {
+            SwingUtilities.invokeAndWait(r);
+        }
+        catch(InterruptedException e) {
+            throw new MyInterruptedException(e);
+        }
+        catch(InvocationTargetException e) {
+            throw new RuntimeException("That's not good!", e);
+        }
+    }
 
     public static final boolean contains(String value, String... list) {
         for(String s : list) {
@@ -52,7 +65,7 @@ public class Tools {
             System.out.println(pb.getOutput());
             System.err.println(pb.getError());
 
-            System.out.printf("\nProgram exited with return code: %d\n", rc);
+            System.out.printf("%nProgram exited with return code: %d%n", rc);
         }
         catch(Exception e) {
             e.printStackTrace();

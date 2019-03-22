@@ -1,4 +1,4 @@
-package com.galenrhodes.gnustep.events;
+package com.galenrhodes.gnustep.common.events;
 
 import java.util.EventListener;
 import java.util.EventObject;

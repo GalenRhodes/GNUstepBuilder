@@ -1,5 +1,7 @@
-package com.galenrhodes.gnustep;
+package com.galenrhodes.gnustep.options;
 
+import com.galenrhodes.gnustep.Main;
+import com.galenrhodes.gnustep.common.Tools;
 import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
@@ -325,7 +327,7 @@ public class BuildOptions implements Serializable {
         if(rtVer2_0) this.rtVer1_8 = this.rtVer1_9 = false;
     }
 
-    public boolean isUseSwiftLibDispatch() {
+    public boolean useSwiftLibDispatch() {
         return useSwiftLibDispatch;
     }
 

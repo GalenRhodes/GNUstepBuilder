@@ -1,7 +1,7 @@
-package com.galenrhodes.gnustep.processes;
+package com.galenrhodes.gnustep.common.processes;
 
-import com.galenrhodes.gnustep.events.EventEngine;
-import com.galenrhodes.gnustep.processes.ProcessEvent.ProcessEventType;
+import com.galenrhodes.gnustep.common.events.EventEngine;
+import com.galenrhodes.gnustep.common.processes.ProcessEvent.ProcessEventType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
