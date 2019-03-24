@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="GNUstepBuilder" level="application" />
-    <orderEntry type="library" name="log4j-1.2-api-2.11.2" level="application" />
+    <orderEntry type="library" exported="" name="GNUstepBuilder" level="application" />
+    <orderEntry type="library" name="log4j-api-2.11.2" level="application" />
   </component>
 </module>
