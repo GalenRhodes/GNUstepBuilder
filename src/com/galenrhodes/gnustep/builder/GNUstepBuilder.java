@@ -252,11 +252,6 @@ public class GNUstepBuilder {
     /**
      *
      */
-    public JComponent $$$getRootComponent$$$() { return builderStatus; }
-
-    /**
-     *
-     */
     private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
         if(currentFont == null) return null;
         String resultName;
@@ -268,6 +263,11 @@ public class GNUstepBuilder {
         }
         return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
+
+    /**
+     *
+     */
+    public JComponent $$$getRootComponent$$$() { return builderStatus; }
 
     /**
      *

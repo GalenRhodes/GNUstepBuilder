@@ -21,6 +21,14 @@ public class L {
         return _getString(key);
     }
 
+    public static final int getInteger(final String key) { return getInteger(key, 0); }
+
+    public static final int getInteger(final String key, int defaultValue) {
+        String str = getString(key);
+        if(str == null || str.trim().length() == 0) return defaultValue;
+        try { return Integer.parseInt(str); } catch(Exception e) { return defaultValue; }
+    }
+
     public static final Object lit(String str) {
         return new Literal(str);
     }

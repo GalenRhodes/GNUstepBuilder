@@ -1,17 +1,19 @@
 package com.galenrhodes.gnustep.builder;
 
 import com.galenrhodes.gnustep.common.L;
+import com.galenrhodes.gnustep.common.Tools;
 import com.galenrhodes.gnustep.common.processes.ProcessCmd;
 import com.galenrhodes.gnustep.common.processes.ProcessEvent;
 import com.galenrhodes.gnustep.common.processes.ProcessListener;
 import com.galenrhodes.gnustep.options.BuildOptions;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Callable;
 
 public class Builder implements Callable<Builder>, ButtonPressedListener {
+
+    private final String llvmHost     = "http://llvm.org/svn/llvm-project";
+    private final String lllvmVersion = "trunk";
 
     private GNUstepBuilder builderWindow;
     private BuildOptions   buildOptions;
@@ -58,16 +60,32 @@ public class Builder implements Callable<Builder>, ButtonPressedListener {
         return this;
     }
 
+    protected int downloadCLang(File workingPath) throws Exception {
+        String url = L.getString("gnustep.llvm.host");
+        int    cc  = L.getInteger("gnustep.llvm.project.count");
+
+        for(int i = 1; i <= cc; i++) {
+            String[] s2 = L.getString(String.format("gnustep.llvm.project.%02d", i)).split("\\|");
+            int      r  = fetchFromSVN(workingPath, String.format(url, s2[0]), s2[1].replace('/', File.separatorChar));
+            if(r != 0) return r;
+        }
+
+        return 0;
+    }
+
     protected int downloadGNUstepCCommandLineFixer(File workingPath) throws Exception {
-        return launchProc(new ProcessCmd("git", workingPath, "clone", L.getFormatted("gnustep.github.url", "gnustep.cmdlinefixer"), "GNUstepCCommandLineFixer"));
+        return fetchFromGIT(workingPath, L.getFormatted("gnustep.github.url", "gnustep.cmdlinefixer"), "GNUstepCCommandLineFixer");
     }
 
     protected int downloadGNUstepMake(File workingPath, int progStart, int progInc) throws Exception {
-        String[] libs = {"make", "base", "gui", "back"};
+        String url = L.getString("gnustep.gnustep.libs.url");
+        int    cc  = L.getInteger("gnustep.gnustep.libs.count");
 
-        for(String lib : libs) {
-            int res = launchProc(new ProcessCmd("git", workingPath, "clone", L.getFormatted("gnustep.github.url", "gnustep.gnustep." + lib), "core" + File.separatorChar + lib));
-            if(res != 0) return res;
+        for(int i = 1; i <= cc; i++) {
+            String[] _str = L.getString(String.format("gnustep.gnustep.libs.%2d", i)).split("\\|");
+            int      r    = fetchFromGIT(workingPath, String.format(url, _str[0]), String.format("core/%s", _str[1]).replace('/', File.separatorChar));
+
+            if(r != 0) return r;
             builderWindow.setProgress(progStart);
             progStart += progInc;
         }
@@ -76,33 +94,45 @@ public class Builder implements Callable<Builder>, ButtonPressedListener {
     }
 
     protected int downloadLibDispatch(File workingPath) throws Exception {
-        String site = L.getFormatted("gnustep.github.url", (buildOptions.useSwiftLibDispatch() ? "gnustep.libdispatch.swift" : "gnustep.libdispatch.nick"));
-        return launchProc(new ProcessCmd("git", workingPath, "clone", site, "libdispatch"));
+        return fetchFromGIT(workingPath,
+                            L.getFormatted("gnustep.github.url", (buildOptions.useSwiftLibDispatch() ? "gnustep.libdispatch.swift" : "gnustep.libdispatch.nick")),
+                            "libdispatch");
     }
 
     protected int downloadLibObjc(File workingPath) throws Exception {
-        return launchProc(new ProcessCmd("git", workingPath, "clone", L.getFormatted("gnustep.github.url", "gnustep.libobjc"), "libobjc"));
+        return fetchFromGIT(workingPath, L.getFormatted("gnustep.github.url", "gnustep.libobjc"), "libobjc");
+    }
+
+    protected int fetchFromGIT(File workingPath, String url, String savePath) throws Exception {
+        return launchProc(workingPath, "git", "clone", url, savePath);
+    }
+
+    protected int fetchFromSVN(File workingPath, String url, String savePath) throws Exception {
+        int r = launchProc(workingPath, "svn", "co", url, savePath);
+        if(r == 0) launchProc(workingPath, "svn", "upgrade", savePath);
+        return r;
     }
 
     protected Builder handleError() {
         return this;
     }
 
-    protected int launchProc(ProcessCmd proc) throws InterruptedException, InvocationTargetException, IOException {
-        currentProc = proc;
+    protected int launchProc(File workingPath, Object... cmdline) throws Exception {
+        if(cmdline.length == 0) throw new IllegalArgumentException("No command-line to execute!");
+        String[] args = new String[cmdline.length - 1];
+
+        for(int i = 1; i < cmdline.length; i++) args[i - 1] = Tools.ifNull(cmdline[i], "").toString();
+
+        currentProc = new ProcessCmd(cmdline[0].toString(), workingPath, args);
         currentProc.addProcessEventListener(new ProcessListener() {
             @Override
             public void processCompleted(ProcessEvent event) { builderWindow.setCancelButtonEnabledState(true); }
 
             @Override
-            public void stderrLineReceived(ProcessEvent event) {
-                builderWindow.addStatusText(event.getReceivedLine() + System.lineSeparator());
-            }
+            public void stderrLineReceived(ProcessEvent event) { builderWindow.addStatusText(event.getReceivedLine() + System.lineSeparator()); }
 
             @Override
-            public void stdoutLineReceived(ProcessEvent event) {
-                builderWindow.addStatusText(event.getReceivedLine() + System.lineSeparator());
-            }
+            public void stdoutLineReceived(ProcessEvent event) { builderWindow.addStatusText(event.getReceivedLine() + System.lineSeparator()); }
         });
 
         builderWindow.setCancelButtonEnabledState(false);

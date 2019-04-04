@@ -136,6 +136,8 @@
     <property name="gnustepbuilder.output.dir" value="${module.gnustepbuilder.basedir}/out/production/GNUstepBuilder"/>
     <property name="gnustepbuilder.testoutput.dir" value="${module.gnustepbuilder.basedir}/out/test/GNUstepBuilder"/>
 
+    <property name="gnustepbuilder.jarfile" value="${module.gnustepbuilder.basedir}/build/GNUstepBuilder.jar"/>
+
     <path id="gnustepbuilder.module.bootclasspath">
         <!-- Paths to be included in compilation bootclasspath -->
     </path>
@@ -210,6 +212,7 @@
     <target name="clean.module.gnustepbuilder" description="cleanup module">
         <delete dir="${gnustepbuilder.output.dir}"/>
         <delete dir="${gnustepbuilder.testoutput.dir}"/>
+        <delete file="${gnustepbuilder.jarfile}"/>
     </target>
 
     <target name="init" description="Build initialization">
@@ -218,7 +221,22 @@
 
     <target name="clean" depends="clean.module.gnustepbuilder" description="cleanup all"/>
 
-    <target name="build.modules" depends="init, clean, compile.module.gnustepbuilder" description="build all modules"/>
+    <target name="build.modules" depends="init, clean, compile.module.gnustepbuilder, create_run_jar" description="build all modules"/>
 
     <target name="all" depends="build.modules" description="build all"/>
+
+    <target name="create_run_jar">
+        <jar destfile="${gnustepbuilder.jarfile}" compress="true" keepcompression="false">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="com.galenrhodes.gnustep.Main"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ log4j-api-2.11.2.jar log4j-core-2.11.2.jar IntelliJ.uiDesigner.jar"/>
+            </manifest>
+            <zipfileset src="${module.gnustepbuilder.basedir}/resources/jar-in-jar-loader.zip"/>
+            <fileset dir="${gnustepbuilder.output.dir}"/>
+            <fileset dir="${module.gnustepbuilder.basedir}/lib"/>
+        </jar>
+    </target>
+
 </project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with XML Edita http://www.xmledita.com -->
+<opts:GNUstepBuildOptions xmlns:gsr="http://www.projectgalen.com/gnustepbuilder" xmlns:opts="http://www.projectgalen.com/gnustepbuilder/options"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.projectgalen.com/gnustepbuilder/options GNUstepBuildOptions.xsd">
+    <gsr:InstallPrerequisiteSoftware>true</gsr:InstallPrerequisiteSoftware>
+    <gsr:InstallLibkqueue>true</gsr:InstallLibkqueue>
+    <gsr:CreateEntriesIn_ld_so_conf_d>true</gsr:CreateEntriesIn_ld_so_conf_d>
+    <gsr:BuildClang>false</gsr:BuildClang>
+    <gsr:ClangTargets>
+        <gsr:x86_64>true</gsr:x86_64>
+        <gsr:arm32>false</gsr:arm32>
+        <gsr:arm64>false</gsr:arm64>
+    </gsr:ClangTargets>
+    <gsr:BuildGoogleTest>false</gsr:BuildGoogleTest>
+    <gsr:UseSwiftLibDispatch>true</gsr:UseSwiftLibDispatch>
+    <gsr:BuildLibDispatchFirst>true</gsr:BuildLibDispatchFirst>
+    <gsr:OldABICompat>false</gsr:OldABICompat>
+    <gsr:RuntimeABI>2.0</gsr:RuntimeABI>
+    <gsr:CustomLibName selected="true">objc2</gsr:CustomLibName>
+    <gsr:BuildMakeTwice>false</gsr:BuildMakeTwice>
+    <gsr:NoMixedABI>true</gsr:NoMixedABI>
+    <gsr:ObjectiveCArc>true</gsr:ObjectiveCArc>
+    <gsr:DebugByDefault>true</gsr:DebugByDefault>
+    <gsr:NativeObjectiveCExceptions>true</gsr:NativeObjectiveCExceptions>
+    <gsr:LibraryCombo>ng-gnu-gnu</gsr:LibraryCombo>
+    <gsr:Layout>fhs</gsr:Layout>
+    <gsr:WorkingDirectory>~/Downloads/GNUstep</gsr:WorkingDirectory>
+    <gsr:InstallDirectory>/opt/GNUstep</gsr:InstallDirectory>
+    <gsr:ListValues>
+        <gsr:LibraryCombo>
+            <gsr:Value>ng-gnu-gnu</gsr:Value>
+            <gsr:Value>gnu-gnu-gnu</gsr:Value>
+            <gsr:Value>apple-apple-apple</gsr:Value>
+        </gsr:LibraryCombo>
+        <gsr:Layout>
+            <gsr:Value>fhs</gsr:Value>
+            <gsr:Value>fhs-system</gsr:Value>
+            <gsr:Value>gnustep</gsr:Value>
+            <gsr:Value>gnustep-with-network</gsr:Value>
+            <gsr:Value>debian</gsr:Value>
+            <gsr:Value>apple</gsr:Value>
+            <gsr:Value>mac</gsr:Value>
+            <gsr:Value>next</gsr:Value>
+            <gsr:Value>standalone</gsr:Value>
+        </gsr:Layout>
+    </gsr:ListValues>
+</opts:GNUstepBuildOptions>

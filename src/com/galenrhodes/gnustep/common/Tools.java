@@ -9,7 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Tools {
 
-    private Tools() {}
+    private Tools()                                         {}
+
+    public static final <T> T ifNull(T obj, T defaultValue) { return ((obj == null) ? defaultValue : obj); }
 
     public static final void invokeAndWait(Runnable r) {
         try {

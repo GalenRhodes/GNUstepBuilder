@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gsr="http://www.projectgalen.com/gnustepbuilder"
+           elementFormDefault="qualified"
+           xml:lang="EN"
+           version="1.0"
+           targetNamespace="http://www.projectgalen.com/gnustepbuilder/options"
+           attributeFormDefault="unqualified">
+    <xs:import schemaLocation="GNUstepOptions.xsd" namespace="http://www.projectgalen.com/gnustepbuilder"/>
+    <xs:element name="GNUstepBuildOptions" type="gsr:GNUstepOptions"/>
+</xs:schema>
