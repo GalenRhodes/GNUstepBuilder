@@ -16,7 +16,7 @@
     <gsr:BuildLibDispatchFirst>true</gsr:BuildLibDispatchFirst>
     <gsr:OldABICompat>false</gsr:OldABICompat>
     <gsr:RuntimeABI>2.0</gsr:RuntimeABI>
-    <gsr:CustomLibName selected="true">objc2</gsr:CustomLibName>
+    <gsr:CustomLibName>objc2</gsr:CustomLibName>
     <gsr:BuildMakeTwice>false</gsr:BuildMakeTwice>
     <gsr:NoMixedABI>true</gsr:NoMixedABI>
     <gsr:ObjectiveCArc>true</gsr:ObjectiveCArc>

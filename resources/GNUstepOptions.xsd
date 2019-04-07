@@ -12,17 +12,17 @@
             <xs:element name="UseSwiftLibDispatch" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
             <xs:element name="BuildLibDispatchFirst" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
             <xs:element name="OldABICompat" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
-            <xs:element name="RuntimeABI" minOccurs="1" maxOccurs="1" type="gsr:RuntimeABIEnum"/>
+            <xs:element name="RuntimeABI" minOccurs="1" maxOccurs="1" type="gsr:RuntimeABIEnum" default="2.0"/>
             <xs:element name="CustomLibName" minOccurs="0" maxOccurs="1" type="gsr:CustomLibNameType"/>
             <xs:element name="BuildMakeTwice" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
             <xs:element name="NoMixedABI" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
             <xs:element name="ObjectiveCArc" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
             <xs:element name="DebugByDefault" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
             <xs:element name="NativeObjectiveCExceptions" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
-            <xs:element name="LibraryCombo" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="Layout" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="WorkingDirectory" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="InstallDirectory" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LibraryCombo" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Layout" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="WorkingDirectory" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="InstallDirectory" minOccurs="0" maxOccurs="1" type="xs:string"/>
             <xs:element name="ListValues" minOccurs="1" maxOccurs="1" type="gsr:ListValuesType"/>
         </xs:sequence>
     </xs:complexType>

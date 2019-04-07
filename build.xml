@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="gnustepbuilder" default="all">
+<project xmlns:unless="ant:unless" name="gnubld" default="all">
 
 
     <property file="build.properties"/>
@@ -7,7 +7,7 @@
     <!--
     <property name="skip.tests" value="true"/>
      -->
-
+    <property name="jdk.home.1.8" value="" unless:set="jdk.home.1.8"/>
     <!-- Compiler options -->
 
     <property name="compiler.debug" value="on"/>
@@ -96,13 +96,13 @@
 
     <!-- Global Libraries -->
 
-    <path id="library.gnustepbuilder.classpath">
-        <pathelement location="/Users/grhodes/IdeaProjects/IntelliJ.uiDesigner.jar"/>
+    <path id="library.gnubld.classpath">
+        <pathelement location="${user.projects}/IntelliJ.uiDesigner.jar"/>
     </path>
 
     <path id="library.log4j-api-2.11.2.classpath">
-        <pathelement location="/Users/grhodes/IdeaProjects/apache-log4j-2.11.2-bin/log4j-api-2.11.2.jar"/>
-        <pathelement location="/Users/grhodes/IdeaProjects/apache-log4j-2.11.2-bin/log4j-core-2.11.2.jar"/>
+        <pathelement location="${user.projects}/apache-log4j-2.11.2-bin/log4j-api-2.11.2.jar"/>
+        <pathelement location="${user.projects}/apache-log4j-2.11.2-bin/log4j-core-2.11.2.jar"/>
     </path>
     <!-- Register Custom Compiler Taskdefs -->
     <property name="javac2.home" value="${idea.home}/lib"/>
@@ -119,123 +119,144 @@
         <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
     </target>
 
+    <target name="register.custom.ant.tasks">
+        <taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
+            <classpath>
+                <fileset dir="${user.java.libs}/jaxb-ri/mod" includes="*.jar"/>
+            </classpath>
+        </taskdef>
+    </target>
+
     <!-- Modules -->
 
 
     <!-- Module GNUstepBuilder -->
 
-    <dirname property="module.gnustepbuilder.basedir" file="${ant.file}"/>
+    <dirname property="mod.gnubld.basedir" file="${ant.file}"/>
 
+    <property name="mod.jdk.home.gnubld" value="${project.jdk.home}"/>
+    <property name="mod.jdk.bin.gnubld" value="${project.jdk.bin}"/>
+    <property name="mod.jdk.classpath.gnubld" value="${project.jdk.classpath}"/>
 
-    <property name="module.jdk.home.gnustepbuilder" value="${project.jdk.home}"/>
-    <property name="module.jdk.bin.gnustepbuilder" value="${project.jdk.bin}"/>
-    <property name="module.jdk.classpath.gnustepbuilder" value="${project.jdk.classpath}"/>
+    <property name="compiler.args.gnubld" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
 
-    <property name="compiler.args.gnustepbuilder" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+    <property name="gnubld.output.dir" value="${mod.gnubld.basedir}/out/production/GNUstepBuilder"/>
+    <property name="gnubld.testoutput.dir" value="${mod.gnubld.basedir}/out/test/GNUstepBuilder"/>
 
-    <property name="gnustepbuilder.output.dir" value="${module.gnustepbuilder.basedir}/out/production/GNUstepBuilder"/>
-    <property name="gnustepbuilder.testoutput.dir" value="${module.gnustepbuilder.basedir}/out/test/GNUstepBuilder"/>
+    <property name="gnubld.jarfile" value="${mod.gnubld.basedir}/build/GNUstepBuilder.jar"/>
 
-    <property name="gnustepbuilder.jarfile" value="${module.gnustepbuilder.basedir}/build/GNUstepBuilder.jar"/>
+    <property name="gnubld.source.dir" value="${mod.gnubld.basedir}/src"/>
+    <property name="gnubld.resources.dir" value="${mod.gnubld.basedir}/resources"/>
 
-    <path id="gnustepbuilder.module.bootclasspath">
+    <path id="gnubld.mod.bootclasspath">
         <!-- Paths to be included in compilation bootclasspath -->
     </path>
 
-    <path id="gnustepbuilder.module.production.classpath">
-        <path refid="${module.jdk.classpath.gnustepbuilder}"/>
-        <path refid="library.gnustepbuilder.classpath"/>
+    <path id="gnubld.mod.production.classpath">
+        <path refid="${mod.jdk.classpath.gnubld}"/>
+        <path refid="library.gnubld.classpath"/>
         <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
-    <path id="gnustepbuilder.runtime.production.module.classpath">
-        <pathelement location="${gnustepbuilder.output.dir}"/>
-        <path refid="library.gnustepbuilder.classpath"/>
+    <path id="gnubld.runtime.production.mod.classpath">
+        <pathelement location="${gnubld.output.dir}"/>
+        <path refid="library.gnubld.classpath"/>
         <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
-    <path id="gnustepbuilder.module.classpath">
-        <path refid="${module.jdk.classpath.gnustepbuilder}"/>
-        <pathelement location="${gnustepbuilder.output.dir}"/>
-        <path refid="library.gnustepbuilder.classpath"/>
+    <path id="gnubld.mod.classpath">
+        <path refid="${mod.jdk.classpath.gnubld}"/>
+        <pathelement location="${gnubld.output.dir}"/>
+        <path refid="library.gnubld.classpath"/>
         <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
-    <path id="gnustepbuilder.runtime.module.classpath">
-        <pathelement location="${gnustepbuilder.testoutput.dir}"/>
-        <pathelement location="${gnustepbuilder.output.dir}"/>
-        <path refid="library.gnustepbuilder.classpath"/>
+    <path id="gnubld.runtime.mod.classpath">
+        <pathelement location="${gnubld.testoutput.dir}"/>
+        <pathelement location="${gnubld.output.dir}"/>
+        <path refid="library.gnubld.classpath"/>
         <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
-
-    <patternset id="excluded.from.module.gnustepbuilder">
+    <patternset id="excluded.from.mod.gnubld">
         <patternset refid="ignored.files"/>
     </patternset>
 
-    <patternset id="excluded.from.compilation.gnustepbuilder">
-        <patternset refid="excluded.from.module.gnustepbuilder"/>
+    <patternset id="excluded.from.compilation.gnubld">
+        <patternset refid="excluded.from.mod.gnubld"/>
     </patternset>
 
-    <path id="gnustepbuilder.module.sourcepath">
-        <dirset dir="${module.gnustepbuilder.basedir}">
+    <path id="gnubld.mod.sourcepath">
+        <dirset dir="${mod.gnubld.basedir}">
             <include name="src"/>
         </dirset>
     </path>
 
+    <target name="compile.mod.gnubld" depends="compile.xsd,compile.mod.gnubld.production,compile.mod.gnubld.tests"
+            description="Compile mod GNUstepBuilder"/>
 
-    <target name="compile.module.gnustepbuilder" depends="compile.module.gnustepbuilder.production,compile.module.gnustepbuilder.tests"
-            description="Compile module GNUstepBuilder"/>
+    <target name="compile.xsd" depends="register.custom.ant.tasks">
+        <xjc package="com.galenrhodes.gnustep.options.data" destdir="${gnubld.source.dir}" extension="true" encoding="UTF-8" removeOldOutput="true">
+            <schema file="${gnubld.resources.dir}/GNUstepBuildOptions.xsd"/>
+            <binding file="${gnubld.resources.dir}/GNUstepBuildOptions.xjb"/>
+            <depends dir="${gnubld.resources.dir}" includes="**/*.xsd"/>
+            <produces dir="${gnubld.source.dir}/com/galenrhodes/gnustep/options/data" includes="**/*.java"/>
+            <arg value="-Xsync-methods"/>
+        </xjc>
+        <copy todir="${gnubld.source.dir}/com/galenrhodes/gnustep/options/data" preservelastmodified="true" flatten="true" failonerror="false">
+            <fileset dir="${gnubld.resources.dir}" includes="**/*.xsd"/>
+        </copy>
+    </target>
 
-    <target name="compile.module.gnustepbuilder.production" depends="register.custom.compilers" description="Compile module GNUstepBuilder; production classes">
-        <mkdir dir="${gnustepbuilder.output.dir}"/>
-        <javac2 destdir="${gnustepbuilder.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true"
-                executable="${module.jdk.bin.gnustepbuilder}/javac">
-            <compilerarg line="${compiler.args.gnustepbuilder}"/>
-            <bootclasspath refid="gnustepbuilder.module.bootclasspath"/>
-            <classpath refid="gnustepbuilder.module.production.classpath"/>
-            <src refid="gnustepbuilder.module.sourcepath"/>
-            <patternset refid="excluded.from.compilation.gnustepbuilder"/>
+    <target name="compile.mod.gnubld.production" depends="register.custom.compilers" description="Compile mod GNUstepBuilder; production classes">
+        <mkdir dir="${gnubld.output.dir}"/>
+        <javac2 destdir="${gnubld.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true"
+                executable="${mod.jdk.bin.gnubld}/javac">
+            <compilerarg line="${compiler.args.gnubld}"/>
+            <bootclasspath refid="gnubld.mod.bootclasspath"/>
+            <classpath refid="gnubld.mod.production.classpath"/>
+            <src refid="gnubld.mod.sourcepath"/>
+            <patternset refid="excluded.from.compilation.gnubld"/>
         </javac2>
 
-        <copy todir="${gnustepbuilder.output.dir}">
-            <fileset dir="${module.gnustepbuilder.basedir}/src">
+        <copy todir="${gnubld.output.dir}">
+            <fileset dir="${mod.gnubld.basedir}/src">
                 <patternset refid="compiler.resources"/>
                 <type type="file"/>
             </fileset>
         </copy>
     </target>
 
-    <target name="compile.module.gnustepbuilder.tests" depends="register.custom.compilers,compile.module.gnustepbuilder.production"
-            description="compile module GNUstepBuilder; test classes" unless="skip.tests"/>
+    <target name="compile.mod.gnubld.tests" depends="register.custom.compilers,compile.mod.gnubld.production"
+            description="compile mod GNUstepBuilder; test classes" unless="skip.tests"/>
 
-    <target name="clean.module.gnustepbuilder" description="cleanup module">
-        <delete dir="${gnustepbuilder.output.dir}"/>
-        <delete dir="${gnustepbuilder.testoutput.dir}"/>
-        <delete file="${gnustepbuilder.jarfile}"/>
+    <target name="clean.mod.gnubld" description="cleanup mod">
+        <delete dir="${gnubld.output.dir}"/>
+        <delete dir="${gnubld.testoutput.dir}"/>
+        <delete file="${gnubld.jarfile}"/>
     </target>
 
     <target name="init" description="Build initialization">
         <!-- Perform any build initialization in this target -->
     </target>
 
-    <target name="clean" depends="clean.module.gnustepbuilder" description="cleanup all"/>
+    <target name="clean" depends="clean.mod.gnubld" description="cleanup all"/>
 
-    <target name="build.modules" depends="init, clean, compile.module.gnustepbuilder, create_run_jar" description="build all modules"/>
+    <target name="build.mods" depends="init, clean, compile.mod.gnubld, create_run_jar" description="build all mods"/>
 
-    <target name="all" depends="build.modules" description="build all"/>
+    <target name="all" depends="build.mods" description="build all"/>
 
     <target name="create_run_jar">
-        <jar destfile="${gnustepbuilder.jarfile}" compress="true" keepcompression="false">
+        <jar destfile="${gnubld.jarfile}" compress="true" keepcompression="false">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
                 <attribute name="Rsrc-Main-Class" value="com.galenrhodes.gnustep.Main"/>
                 <attribute name="Class-Path" value="."/>
                 <attribute name="Rsrc-Class-Path" value="./ log4j-api-2.11.2.jar log4j-core-2.11.2.jar IntelliJ.uiDesigner.jar"/>
             </manifest>
-            <zipfileset src="${module.gnustepbuilder.basedir}/resources/jar-in-jar-loader.zip"/>
-            <fileset dir="${gnustepbuilder.output.dir}"/>
-            <fileset dir="${module.gnustepbuilder.basedir}/lib"/>
+            <zipfileset src="${mod.gnubld.basedir}/resources/jar-in-jar-loader.zip"/>
+            <fileset dir="${gnubld.output.dir}"/>
+            <fileset dir="${mod.gnubld.basedir}/lib"/>
         </jar>
     </target>
 

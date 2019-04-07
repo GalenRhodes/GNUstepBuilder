@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" jaxb:version="1.0" -->
+<jaxb:bindings
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        jaxb:version="2.0">
+
+    <jaxb:bindings schemaLocation="GNUstepOptions.xsd" node="/xs:schema">
+
+        <jaxb:bindings node="xs:simpleType[@name='RuntimeABIEnum']">
+            <jaxb:typesafeEnumClass name="RuntimeABIEnum">
+                <jaxb:typesafeEnumMember name="V1_9" value="1.9"/>
+                <jaxb:typesafeEnumMember name="V2_0" value="2.0"/>
+                <jaxb:typesafeEnumMember name="GNU" value="GNU"/>
+            </jaxb:typesafeEnumClass>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="xs:complexType[@name='ValuesArrayType']">
+            <jaxb:bindings node="xs:sequence/xs:element[@name='Value']">
+                <jaxb:property name="Values"/>
+            </jaxb:bindings>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+
+</jaxb:bindings>
