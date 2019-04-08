@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:unless="ant:unless" name="gnubld" default="all">
+<project name="gnubld" default="all">
 
 
     <property file="build.properties"/>
@@ -7,7 +7,6 @@
     <!--
     <property name="skip.tests" value="true"/>
      -->
-    <property name="jdk.home.1.8" value="" unless:set="jdk.home.1.8"/>
     <!-- Compiler options -->
 
     <property name="compiler.debug" value="on"/>
@@ -96,14 +95,6 @@
 
     <!-- Global Libraries -->
 
-    <path id="library.gnubld.classpath">
-        <pathelement location="${user.projects}/IntelliJ.uiDesigner.jar"/>
-    </path>
-
-    <path id="library.log4j-api-2.11.2.classpath">
-        <pathelement location="${user.projects}/apache-log4j-2.11.2-bin/log4j-api-2.11.2.jar"/>
-        <pathelement location="${user.projects}/apache-log4j-2.11.2-bin/log4j-core-2.11.2.jar"/>
-    </path>
     <!-- Register Custom Compiler Taskdefs -->
     <property name="javac2.home" value="${idea.home}/lib"/>
     <path id="javac2.classpath">
@@ -119,13 +110,6 @@
         <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
     </target>
 
-    <target name="register.custom.ant.tasks">
-        <taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
-            <classpath>
-                <fileset dir="${user.java.libs}/jaxb-ri/mod" includes="*.jar"/>
-            </classpath>
-        </taskdef>
-    </target>
 
     <!-- Modules -->
 
@@ -146,36 +130,50 @@
     <property name="gnubld.jarfile" value="${mod.gnubld.basedir}/build/GNUstepBuilder.jar"/>
 
     <property name="gnubld.source.dir" value="${mod.gnubld.basedir}/src"/>
+    <property name="gnubld.lib.dir" value="${mod.gnubld.basedir}/lib"/>
     <property name="gnubld.resources.dir" value="${mod.gnubld.basedir}/resources"/>
+    <property name="gnubld.buildlib.dir" value="${mod.gnubld.basedir}/build_lib"/>
+
+    <target name="register.custom.ant.tasks">
+        <taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
+            <classpath>
+                <fileset dir="${gnubld.buildlib.dir}/jaxb-jxc" includes="*.jar"/>
+            </classpath>
+        </taskdef>
+    </target>
 
     <path id="gnubld.mod.bootclasspath">
         <!-- Paths to be included in compilation bootclasspath -->
     </path>
 
+    <fileset dir="${gnubld.lib.dir}" id="gnubld.lib.files">
+        <include name="**/*.jar"/>
+    </fileset>
+
+    <path id="library.gnubld.classpath">
+        <fileset refid="gnubld.lib.files"/>
+    </path>
+
     <path id="gnubld.mod.production.classpath">
         <path refid="${mod.jdk.classpath.gnubld}"/>
         <path refid="library.gnubld.classpath"/>
-        <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
     <path id="gnubld.runtime.production.mod.classpath">
         <pathelement location="${gnubld.output.dir}"/>
         <path refid="library.gnubld.classpath"/>
-        <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
     <path id="gnubld.mod.classpath">
         <path refid="${mod.jdk.classpath.gnubld}"/>
         <pathelement location="${gnubld.output.dir}"/>
         <path refid="library.gnubld.classpath"/>
-        <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
     <path id="gnubld.runtime.mod.classpath">
         <pathelement location="${gnubld.testoutput.dir}"/>
         <pathelement location="${gnubld.output.dir}"/>
         <path refid="library.gnubld.classpath"/>
-        <path refid="library.log4j-api-2.11.2.classpath"/>
     </path>
 
     <patternset id="excluded.from.mod.gnubld">
@@ -192,6 +190,16 @@
         </dirset>
     </path>
 
+    <path id="gnubld.jar.in.jar.classpath">
+        <pathelement location="./"/>
+        <path refid="library.gnubld.classpath"/>
+    </path>
+
+    <pathconvert targetos="unix" pathsep=" " refid="gnubld.jar.in.jar.classpath" property="gnubld.jar.in.jar.path">
+        <map from="${gnubld.lib.dir}/" to=""/>
+        <map from="${mod.gnubld.basedir}" to="./"/>
+    </pathconvert>
+
     <target name="compile.mod.gnubld" depends="compile.xsd,compile.mod.gnubld.production,compile.mod.gnubld.tests"
             description="Compile mod GNUstepBuilder"/>
 
@@ -204,14 +212,17 @@
             <arg value="-Xsync-methods"/>
         </xjc>
         <copy todir="${gnubld.source.dir}/com/galenrhodes/gnustep/options/data" preservelastmodified="true" flatten="true" failonerror="false">
-            <fileset dir="${gnubld.resources.dir}" includes="**/*.xsd"/>
+            <fileset dir="${gnubld.resources.dir}">
+                <include name="**/*.xsd"/>
+                <type type="file"/>
+            </fileset>
         </copy>
     </target>
 
     <target name="compile.mod.gnubld.production" depends="register.custom.compilers" description="Compile mod GNUstepBuilder; production classes">
         <mkdir dir="${gnubld.output.dir}"/>
         <javac2 destdir="${gnubld.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true"
-                executable="${mod.jdk.bin.gnubld}/javac">
+                executable="${mod.jdk.bin.gnubld}/javac" verbose="true">
             <compilerarg line="${compiler.args.gnubld}"/>
             <bootclasspath refid="gnubld.mod.bootclasspath"/>
             <classpath refid="gnubld.mod.production.classpath"/>
@@ -244,7 +255,8 @@
 
     <target name="build.mods" depends="init, clean, compile.mod.gnubld, create_run_jar" description="build all mods"/>
 
-    <target name="all" depends="build.mods" description="build all"/>
+    <target name="all" depends="build.mods" description="build all">
+    </target>
 
     <target name="create_run_jar">
         <jar destfile="${gnubld.jarfile}" compress="true" keepcompression="false">
@@ -252,11 +264,11 @@
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
                 <attribute name="Rsrc-Main-Class" value="com.galenrhodes.gnustep.Main"/>
                 <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ log4j-api-2.11.2.jar log4j-core-2.11.2.jar IntelliJ.uiDesigner.jar"/>
+                <attribute name="Rsrc-Class-Path" value="${gnubld.jar.in.jar.path}"/>
             </manifest>
-            <zipfileset src="${mod.gnubld.basedir}/resources/jar-in-jar-loader.zip"/>
+            <zipfileset src="${gnubld.resources.dir}/jar-in-jar-loader.zip"/>
             <fileset dir="${gnubld.output.dir}"/>
-            <fileset dir="${mod.gnubld.basedir}/lib"/>
+            <fileset refid="gnubld.lib.files"/>
         </jar>
     </target>
 
