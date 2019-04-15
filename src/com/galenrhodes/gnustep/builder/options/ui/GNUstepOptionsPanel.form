@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.galenrhodes.gnustep.builder.options.ui.GNUstepOptionsPanel">
+  <grid id="27dc6" binding="buildOptionsPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="3" left="3" bottom="3" right="3"/>
+    <constraints>
+      <xy x="20" y="20" width="714" height="435"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="f0ba0" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="7e162" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line" title="Miscellaneous Options"/>
+            <children>
+              <component id="9a192" class="javax.swing.JCheckBox" binding="installPrerequisiteSoftwareCheckBox">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.prereq_software"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.prereq_software.tooltip"/>
+                </properties>
+              </component>
+              <component id="ebfd7" class="javax.swing.JCheckBox" binding="installLibkqueueCheckBox">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.libkqueue"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.libkqueue.tooltip"/>
+                </properties>
+              </component>
+              <component id="62f2" class="javax.swing.JCheckBox" binding="createEntriesInLdSoConfDCheckBox">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.etc_ld_so_conf_d"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="install.checkbox.etc_ld_so_conf_d.tooltip"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="6b6af" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line" title="CLANG/LLVM Options"/>
+            <children>
+              <component id="210a3" class="javax.swing.JCheckBox" binding="buildClangCheckBox">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.latest"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.latest.tooltip"/>
+                </properties>
+              </component>
+              <component id="b18ad" class="javax.swing.JCheckBox" binding="buildGoogleTestCheckBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.gtest"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.gtest.tooltip"/>
+                </properties>
+              </component>
+              <grid id="aa074" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="74aa8" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.label.targets"/>
+                    </properties>
+                  </component>
+                  <component id="ede44" class="javax.swing.JCheckBox" binding="archX32_64CheckBox">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_x86_64"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_x64_64.tooltip"/>
+                    </properties>
+                  </component>
+                  <component id="cfb66" class="javax.swing.JCheckBox" binding="archARM32CheckBox">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_arm32"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_arm32.tooltip"/>
+                    </properties>
+                  </component>
+                  <component id="e0225" class="javax.swing.JCheckBox" binding="archARM64CheckBox">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_arm64"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.clang.checkbox.arch_arm64.tooltip"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="cd722" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line" title="Dispatch (libdispatch) Options"/>
+            <children>
+              <component id="e1304" class="javax.swing.JCheckBox" binding="useSwiftLibDispatchCheckBox">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.dispatch.checkbox.dispatch_from_swift"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.dispatch.checkbox.dispatch_from_swift.tooltip"/>
+                </properties>
+              </component>
+              <component id="dd52f" class="javax.swing.JCheckBox" binding="buildLibDispatchFirstCheckBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.dispatch.checkbox.dispatch_first"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.dispatch.checkbox.dispatch_first.tooltip"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="dfa4c" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="8f297" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line" title="GNUstep Options"/>
+            <children>
+              <component id="27afc" class="javax.swing.JCheckBox" binding="buildMakeTwiceCheckBox">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.build_make_twice"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.build_make_twice.tooltip"/>
+                </properties>
+              </component>
+              <component id="904d2" class="javax.swing.JCheckBox" binding="noMixedABICheckBox" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.no_mixed_abi"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.no_mixed_abi.tooltip"/>
+                </properties>
+              </component>
+              <component id="dd5d1" class="javax.swing.JCheckBox" binding="nonFragileABICheckBox">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.use_nonfragile_abi"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.use_nonfragile_abi.tooltip"/>
+                </properties>
+              </component>
+              <component id="390b4" class="javax.swing.JCheckBox" binding="nativeObjectiveCExceptionsCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.native_objc_exceptions"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.native_objc_exceptions.tooltip"/>
+                </properties>
+              </component>
+              <component id="387ac" class="javax.swing.JCheckBox" binding="debugByDefaultCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.enable_debug_by_default"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.enable_debug_by_default.tooltip"/>
+                </properties>
+              </component>
+              <component id="e5368" class="javax.swing.JCheckBox" binding="objectiveCArcCheckBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.use_arc"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.checkbox.use_arc.tooltip"/>
+                </properties>
+              </component>
+              <grid id="775b2" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="79a18" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.label.lib_combo"/>
+                    </properties>
+                  </component>
+                  <component id="541f1" class="javax.swing.JComboBox" binding="libComboDropDown">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="8d647" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.gnustep.label.layout"/>
+                    </properties>
+                  </component>
+                  <component id="8407" class="javax.swing.JComboBox" binding="fileSystemLayoutDropDown">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <hspacer id="bba85">
+                    <constraints>
+                      <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="135e9" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line" title="Objective-C Runtime Options"/>
+            <children>
+              <component id="71e87" class="javax.swing.JCheckBox" binding="oldABICompatCheckBox">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.checkbox.old_api_compat"/>
+                </properties>
+              </component>
+              <component id="c1704" class="javax.swing.JCheckBox" binding="customLibNameCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.label.custom_lib_name"/>
+                </properties>
+              </component>
+              <component id="f37f0" class="javax.swing.JTextField" binding="customLibNameValue">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="150" height="-1"/>
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <grid id="240eb" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="1b437" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.label.version"/>
+                    </properties>
+                  </component>
+                  <component id="1f390" class="javax.swing.JRadioButton" binding="rtVer1_8RadioButton">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_gcc"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_gcc.tooltip"/>
+                    </properties>
+                  </component>
+                  <component id="f6062" class="javax.swing.JRadioButton" binding="rtVer1_9RadioButton">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_1_9"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_1_9.tooltip"/>
+                    </properties>
+                  </component>
+                  <component id="b26d6" class="javax.swing.JRadioButton" binding="rtVer2_0RadioButton">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_2_0"/>
+                      <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="build.objc2.radiobutton.rt_version_2_0.tooltip"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <hspacer id="45301">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <vspacer id="ddd45">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="1d871" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="6a3c6" class="javax.swing.JButton" binding="startButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/accept.png"/>
+              <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.button.start"/>
+            </properties>
+          </component>
+          <component id="2611d" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/cross.png"/>
+              <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.button.cancel"/>
+            </properties>
+          </component>
+          <component id="3e123" class="javax.swing.JButton" binding="helpButton">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/help.png"/>
+              <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.button.help"/>
+            </properties>
+          </component>
+          <hspacer id="98311">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <vspacer id="59ff6">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <grid id="a09ab" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="3" bottom="0" right="3"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+        </constraints>
+        <properties/>
+        <border type="line" title="Directories"/>
+        <children>
+          <grid id="165c9" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="ba15" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.directory.label"/>
+                </properties>
+              </component>
+              <component id="95a73" class="javax.swing.JTextField" binding="installDirField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="install.directory.tooltip"/>
+                </properties>
+              </component>
+              <component id="9bbcb" class="javax.swing.JButton" binding="installDirFindButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="images/find.png"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="install.directory.button.find"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="install.directory.button.find.tooltip"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="fc626" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="c7a61" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="working.directory.label"/>
+                </properties>
+              </component>
+              <component id="43b5d" class="javax.swing.JTextField" binding="workingDirField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="working.directory.tooltip"/>
+                </properties>
+              </component>
+              <component id="7489f" class="javax.swing.JButton" binding="workingDirFindButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="images/find.png"/>
+                  <text resource-bundle="com/galenrhodes/gnustep/localization" key="working.directory.button.find"/>
+                  <toolTipText resource-bundle="com/galenrhodes/gnustep/localization" key="working.directory.button.find.tooltip"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="runtimeABIButtonGroup">
+      <member id="76ff6"/>
+      <member id="b7c63"/>
+      <member id="6fbe9"/>
+      <member id="1f390"/>
+      <member id="f6062"/>
+      <member id="b26d6"/>
+    </group>
+  </buttonGroups>
+</form>

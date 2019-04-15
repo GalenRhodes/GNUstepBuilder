@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Class-Path: log4j-api-2.11.2.jar log4j-core-2.11.2.jar IntelliJ.uiDesi
  gner.jar
-Main-Class: com.galenrhodes.gnustep.Main
+Main-Class: com.galenrhodes.gnustep.builder.Main
 

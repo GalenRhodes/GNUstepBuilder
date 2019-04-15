@@ -9,17 +9,39 @@
 
         <jaxb:bindings node="xs:simpleType[@name='RuntimeABIEnum']">
             <jaxb:typesafeEnumClass name="RuntimeABIEnum">
+                <jaxb:typesafeEnumMember name="GNU" value="GNU"/>
                 <jaxb:typesafeEnumMember name="V1_9" value="1.9"/>
                 <jaxb:typesafeEnumMember name="V2_0" value="2.0"/>
-                <jaxb:typesafeEnumMember name="GNU" value="GNU"/>
             </jaxb:typesafeEnumClass>
         </jaxb:bindings>
 
-        <jaxb:bindings node="xs:complexType[@name='ValuesArrayType']">
+        <jaxb:bindings node="xs:simpleType[@name='LibraryComboEnum']">
+            <jaxb:typesafeEnumClass name="LibraryComboEnum">
+                <jaxb:typesafeEnumMember name="NG_GNU_GNU" value="ng-gnu-gnu"/>
+                <jaxb:typesafeEnumMember name="GNU_GNU_GNU" value="gnu-gnu-gnu"/>
+                <jaxb:typesafeEnumMember name="APPLE_APPLE_APPLE" value="apple-apple-apple"/>
+            </jaxb:typesafeEnumClass>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="xs:simpleType[@name='FileSystemLayoutsEnum']">
+            <jaxb:typesafeEnumClass name="FileSystemLayoutsEnum">
+                <jaxb:typesafeEnumMember name="FHS" value="fhs"/>
+                <jaxb:typesafeEnumMember name="FHS_SYSTEM" value="fhs-system"/>
+                <jaxb:typesafeEnumMember name="GNUSTEP" value="gnustep"/>
+                <jaxb:typesafeEnumMember name="GNUSTEP_WITH_NETWORK" value="gnustep-with-network"/>
+                <jaxb:typesafeEnumMember name="DEBIAN" value="debian"/>
+                <jaxb:typesafeEnumMember name="APPLE" value="apple"/>
+                <jaxb:typesafeEnumMember name="MAC" value="mac"/>
+                <jaxb:typesafeEnumMember name="NEXT" value="next"/>
+                <jaxb:typesafeEnumMember name="STANDALONE" value="standalone"/>
+            </jaxb:typesafeEnumClass>
+        </jaxb:bindings>
+
+        <!-- <jaxb:bindings node="xs:complexType[@name='ValuesArrayType']">
             <jaxb:bindings node="xs:sequence/xs:element[@name='Value']">
                 <jaxb:property name="Values"/>
             </jaxb:bindings>
-        </jaxb:bindings>
+        </jaxb:bindings> -->
 
     </jaxb:bindings>
 

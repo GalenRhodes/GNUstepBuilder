@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="gnubld" default="all">
 
-
     <property file="build.properties"/>
     <!-- Uncomment the following property if no tests compilation is needed -->
     <!--
@@ -92,7 +91,6 @@
     <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
     <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
 
-
     <!-- Global Libraries -->
 
     <!-- Register Custom Compiler Taskdefs -->
@@ -110,9 +108,7 @@
         <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
     </target>
 
-
     <!-- Modules -->
-
 
     <!-- Module GNUstepBuilder -->
 
@@ -134,6 +130,9 @@
     <property name="gnubld.resources.dir" value="${mod.gnubld.basedir}/resources"/>
     <property name="gnubld.buildlib.dir" value="${mod.gnubld.basedir}/build_lib"/>
 
+    <property name="gnubld.root" value="com/galenrhodes/gnustep/builder"/>
+    <property name="gnubld.jaxb.src" value="${gnubld.source.dir}/${gnubld.root}/options/data"/>
+
     <target name="register.custom.ant.tasks">
         <taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
             <classpath>
@@ -148,6 +147,14 @@
 
     <fileset dir="${gnubld.lib.dir}" id="gnubld.lib.files">
         <include name="**/*.jar"/>
+    </fileset>
+
+    <fileset dir="${gnubld.resources.dir}" id="gnubld.opt.xml.files">
+        <include name="**/*.xml"/>
+    </fileset>
+
+    <fileset dir="${gnubld.resources.dir}" id="gnubld.opt.xsd.files">
+        <include name="**/*.xsd"/>
     </fileset>
 
     <path id="library.gnubld.classpath">
@@ -204,18 +211,26 @@
             description="Compile mod GNUstepBuilder"/>
 
     <target name="compile.xsd" depends="register.custom.ant.tasks">
-        <xjc package="com.galenrhodes.gnustep.options.data" destdir="${gnubld.source.dir}" extension="true" encoding="UTF-8" removeOldOutput="true">
-            <schema file="${gnubld.resources.dir}/GNUstepBuildOptions.xsd"/>
+        <delete dir="${gnubld.jaxb.src}" failonerror="false"/>
+
+        <xjc package="com.galenrhodes.gnustep.builder.options.data" destdir="${gnubld.source.dir}" extension="true" encoding="UTF-8" removeOldOutput="true" target="2.0">
+            <schema file="${gnubld.resources.dir}/GNUstepOptions.xsd"/>
             <binding file="${gnubld.resources.dir}/GNUstepBuildOptions.xjb"/>
-            <depends dir="${gnubld.resources.dir}" includes="**/*.xsd"/>
-            <produces dir="${gnubld.source.dir}/com/galenrhodes/gnustep/options/data" includes="**/*.java"/>
             <arg value="-Xsync-methods"/>
+            <arg value="-npa"/>
         </xjc>
-        <copy todir="${gnubld.source.dir}/com/galenrhodes/gnustep/options/data" preservelastmodified="true" flatten="true" failonerror="false">
-            <fileset dir="${gnubld.resources.dir}">
-                <include name="**/*.xsd"/>
-                <type type="file"/>
-            </fileset>
+
+        <copy todir="${gnubld.jaxb.src}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xsd.files"/>
+        </copy>
+        <copy todir="${gnubld.source.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xml.files"/>
+        </copy>
+        <copy todir="${gnubld.output.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xml.files"/>
+        </copy>
+        <copy todir="${gnubld.testoutput.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xml.files"/>
         </copy>
     </target>
 
@@ -238,8 +253,8 @@
         </copy>
     </target>
 
-    <target name="compile.mod.gnubld.tests" depends="register.custom.compilers,compile.mod.gnubld.production"
-            description="compile mod GNUstepBuilder; test classes" unless="skip.tests"/>
+    <target name="compile.mod.gnubld.tests" depends="register.custom.compilers,compile.mod.gnubld.production" description="compile mod GNUstepBuilder; test classes"
+            unless="skip.tests"/>
 
     <target name="clean.mod.gnubld" description="cleanup mod">
         <delete dir="${gnubld.output.dir}"/>
@@ -262,7 +277,7 @@
         <jar destfile="${gnubld.jarfile}" compress="true" keepcompression="false">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="com.galenrhodes.gnustep.Main"/>
+                <attribute name="Rsrc-Main-Class" value="com.galenrhodes.gnustep.builder.Main"/>
                 <attribute name="Class-Path" value="."/>
                 <attribute name="Rsrc-Class-Path" value="${gnubld.jar.in.jar.path}"/>
             </manifest>

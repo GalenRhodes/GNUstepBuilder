@@ -1,0 +1,11 @@
+
+<xml-edita-project name="Untitled Project">
+    <properties></properties>
+    <entries>
+        <group name="XML Documents"></group>
+        <group name="XML W3C Schemas"></group>
+        <group name="XSL Templates"></group>
+        <group name="XHTML Files"></group>
+    </entries>
+    <transformation-properties-entries></transformation-properties-entries>
+</xml-edita-project>
