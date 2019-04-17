@@ -131,7 +131,8 @@
     <property name="gnubld.buildlib.dir" value="${mod.gnubld.basedir}/build_lib"/>
 
     <property name="gnubld.root" value="com/galenrhodes/gnustep/builder"/>
-    <property name="gnubld.jaxb.src" value="${gnubld.source.dir}/${gnubld.root}/options/data"/>
+    <property name="gnubld.data" value="${gnubld.root}/options/data"/>
+    <property name="gnubld.jaxb.src" value="${gnubld.source.dir}/${gnubld.data}"/>
 
     <target name="register.custom.ant.tasks">
         <taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
@@ -222,14 +223,14 @@
 
         <copy todir="${gnubld.jaxb.src}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
             <fileset refid="gnubld.opt.xsd.files"/>
-        </copy>
-        <copy todir="${gnubld.source.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
             <fileset refid="gnubld.opt.xml.files"/>
         </copy>
-        <copy todir="${gnubld.output.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+        <copy todir="${gnubld.output.dir}/${gnubld.data}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xsd.files"/>
             <fileset refid="gnubld.opt.xml.files"/>
         </copy>
-        <copy todir="${gnubld.testoutput.dir}/${gnubld.root}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+        <copy todir="${gnubld.testoutput.dir}/${gnubld.data}" preservelastmodified="true" flatten="true" failonerror="true" overwrite="true">
+            <fileset refid="gnubld.opt.xsd.files"/>
             <fileset refid="gnubld.opt.xml.files"/>
         </copy>
     </target>

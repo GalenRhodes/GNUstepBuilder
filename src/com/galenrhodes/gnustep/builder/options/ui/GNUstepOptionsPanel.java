@@ -175,7 +175,12 @@ public class GNUstepOptionsPanel {
 
     public final StandardButtons resetPressedButton() {
         StandardButtons button = null;
-        synchronized(DEFAULT_INSTALL_DIR) { if((button = pressedButton) != null) { pressedButton = null; DEFAULT_INSTALL_DIR.notify(); } }
+        synchronized(DEFAULT_INSTALL_DIR) {
+            if((button = pressedButton) != null) {
+                pressedButton = null;
+                DEFAULT_INSTALL_DIR.notify();
+            }
+        }
         return button;
     }
 
@@ -223,7 +228,11 @@ public class GNUstepOptionsPanel {
 
     public final StandardButtons waitForButton(StandardButtons... buttons) throws InterruptedException {
         synchronized(DEFAULT_INSTALL_DIR) {
-            while(foo01(pressedButton, buttons)) try { DEFAULT_INSTALL_DIR.wait(); } catch(InterruptedException e) { DEFAULT_INSTALL_DIR.notify(); throw e; }
+            while(foo01(pressedButton, buttons)) try { DEFAULT_INSTALL_DIR.wait(); }
+            catch(InterruptedException e) {
+                DEFAULT_INSTALL_DIR.notify();
+                throw e;
+            }
             StandardButtons button = pressedButton;
             DEFAULT_INSTALL_DIR.notify();
             return button;
@@ -232,15 +241,35 @@ public class GNUstepOptionsPanel {
 
     public final void waitForButtonReset() throws InterruptedException {
         synchronized(DEFAULT_INSTALL_DIR) {
-            while(pressedButton != null) { try { DEFAULT_INSTALL_DIR.wait(); } catch(InterruptedException e) { DEFAULT_INSTALL_DIR.notify(); throw e; } }
+            while(pressedButton != null) {
+                try { DEFAULT_INSTALL_DIR.wait(); }
+                catch(InterruptedException e) {
+                    DEFAULT_INSTALL_DIR.notify();
+                    throw e;
+                }
+            }
             DEFAULT_INSTALL_DIR.notify();
         }
     }
 
     protected void publishButtonEvent(StandardButtons button) {
         ExecutorService exec = EventEngine.getExecutor();
-        exec.submit(new Runnable() { @Override public void run() { synchronized(DEFAULT_INSTALL_DIR) { pressedButton = button; DEFAULT_INSTALL_DIR.notify(); }}});
-        synchronized(btnLstnrs) { for(final ButtonPressedListener l : btnLstnrs) exec.submit(new Runnable() { @Override public void run() { l.buttonPressed(button); }}); }
+        exec.submit(new Runnable() {
+            @Override
+            public void run() {
+                synchronized(DEFAULT_INSTALL_DIR) {
+                    pressedButton = button;
+                    DEFAULT_INSTALL_DIR.notify();
+                }
+            }
+        });
+        synchronized(btnLstnrs) {
+            for(final ButtonPressedListener l : btnLstnrs)
+                exec.submit(new Runnable() {
+                    @Override
+                    public void run() { l.buttonPressed(button); }
+                });
+        }
     }
 
     {

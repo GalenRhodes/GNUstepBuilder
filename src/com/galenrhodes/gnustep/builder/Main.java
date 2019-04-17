@@ -1,5 +1,6 @@
 package com.galenrhodes.gnustep.builder;
 
+import com.galenrhodes.gnustep.builder.common.L;
 import com.galenrhodes.gnustep.builder.common.StandardButtons;
 import com.galenrhodes.gnustep.builder.common.SwingInvoker;
 import com.galenrhodes.gnustep.builder.common.Tools;
@@ -10,7 +11,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBContext;
+import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,20 +22,77 @@ public class Main {
 
     private static final Logger log = LogManager.getLogger(Main.class);
 
-    private ExecutorService     executor = Executors.newCachedThreadPool();
-    private String[]            args     = {};
-    private GNUstepBuildOptions options  = null;
+    private final GNUstepBuildOptions options;
+    private final Properties          properties;
+    private       ExecutorService     executor = Executors.newCachedThreadPool();
+    private       String[]            args     = {};
 
     private Main() {
         super();
+        properties = new Properties();
         try {
+            properties.loadFromXML(this.getClass().getResourceAsStream("/com/galenrhodes/gnustep/GNUstepBuilder.xml"));
+
             JAXBContext ctx = JAXBContext.newInstance(GNUstepBuildOptions.class);
-            options = (GNUstepBuildOptions)ctx.createUnmarshaller().unmarshal(this.getClass().getResourceAsStream("GNUstepOptionsDefaults.xml"));
+            InputStream instr = this.getClass().getResourceAsStream(getProperty("gnustep.bldr.default.options.file", "options/data/GNUstepOptionsDefaults.xml"));
+            options = (GNUstepBuildOptions)ctx.createUnmarshaller().unmarshal(instr);
         }
         catch(Exception e) {
-            throw new RuntimeException("Cannot load options file.", e);
+            throw new RuntimeException(L.getString("error.cannot_load_options_file"), e);
         }
     }
+
+    public Properties getProperties() { return properties; }
+
+    public String getProperty(String key, String defaultValue) {
+        return getProperties().getProperty(key, defaultValue);
+    }
+
+    public String getProperty(String key) {
+        return getProperties().getProperty(key);
+    }
+
+    public byte getByteProperty(String key, byte defaultValue) {
+        try { return Byte.parseByte(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public byte getByteProperty(String key) { return getByteProperty(key, (byte)0); }
+
+    public short getShortProperty(String key, short defaultValue) {
+        try { return Short.parseShort(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public short getShortProperty(String key) { return getShortProperty(key, (short)0); }
+
+    public int getIntProperty(String key, int defaultValue) {
+        try { return Integer.parseInt(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public int getIntProperty(String key) { return getIntProperty(key, 0); }
+
+    public long getLongProperty(String key, long defaultValue) {
+        try { return Long.parseLong(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public long getLongProperty(String key) { return getLongProperty(key, 0L); }
+
+    public float getFloatProperty(String key, float defaultValue) {
+        try { return Float.parseFloat(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public float getFloatProperty(String key) { return getFloatProperty(key, 0.0f); }
+
+    public double getDoubleProperty(String key, double defaultValue) {
+        try { return Double.parseDouble(getProperty(key, String.valueOf(defaultValue))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public double getDoubleProperty(String key) { return getDoubleProperty(key, 0.0); }
+
+    public boolean getBooleanProperty(String key, boolean defaultValue) {
+        try { return Boolean.parseBoolean(getProperty(key, (defaultValue ? "true" : "false"))); } catch(Exception e) { return defaultValue; }
+    }
+
+    public boolean getBooleanProperty(String key) { return getBooleanProperty(key, false); }
 
     public void run() {
         try {
@@ -48,7 +108,7 @@ public class Main {
             @Override
             public GNUstepOptionsPanel call() throws Exception {
                 GNUstepOptionsPanel optionsPanel = new GNUstepOptionsPanel();
-                JFrame              frame        = new JFrame("GNUstep Builder");
+                JFrame              frame        = new JFrame(L.getString("window.title.builder"));
 
                 frame.getContentPane().add(optionsPanel.getRootPanel());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

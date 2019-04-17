@@ -5,18 +5,42 @@
     <comment>Properties file for GNUstepBuilder</comment>
 
     <entry key="com.galenrhodes.log4j.conf.path">/log4j2.xml</entry>
+    <entry key="gnustep.bldr.default.options.file">/com/galenrhodes/gnustep/builder/options/data/GNUstepOptionsDefaults.xml</entry>
 
-    <entry key="com.galenrhodes.gnustepbuilder.FilesystemLayouts">fhs|fhs-system|gnustep|gnustep-with-network|debian|apple|mac|next|standalone</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartA">ng|gnu|apple</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartB">gnu|apple</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.ValidComboPartC">gnu|apple</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.DefaultInstallPath">/opt/objc2</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.DefaultLibName">objc2</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.BadComboTestPattern">(\w+)-(\w+)-(\w+)</entry>
-    <entry key="com.galenrhodes.gnustepbuilder.ComboFormat">%s-%s-%s</entry>
+    <entry key="gnustep.cmdlinefixer.host">https://github.com/GalenRhodes/%s.git</entry>
+    <entry key="gnustep.cmdlinefixer.type">git</entry>
+    <entry key="gnustep.cmdlinefixer.module.count">1</entry>
+    <entry key="gnustep.cmdlinefixer.module.01.source">GNUstepCCommandLineFixer</entry>
+    <entry key="gnustep.cmdlinefixer.module.01.target">GNUstepCCommandLineFixer</entry>
 
-    <entry key="com.galenrhodes.gnustepbuilder.ListSeparatorPattern">\s*\|\s*</entry>
+    <entry key="gnustep.gnustep.host">https://github.com/gnustep/%s.git</entry>
+    <entry key="gnustep.gnustep.type">git</entry>
+    <entry key="gnustep.gnustep.module.count">5</entry>
+    <entry key="gnustep.gnustep.module.01.source">libobjc2</entry>
+    <entry key="gnustep.gnustep.module.01.target">libobjc2</entry>
+    <entry key="gnustep.gnustep.module.02.source">tools-make</entry>
+    <entry key="gnustep.gnustep.module.02.target">make</entry>
+    <entry key="gnustep.gnustep.module.03.source">libs-base</entry>
+    <entry key="gnustep.gnustep.module.03.target">base</entry>
+    <entry key="gnustep.gnustep.module.04.source">libs-gui</entry>
+    <entry key="gnustep.gnustep.module.04.target">gui</entry>
+    <entry key="gnustep.gnustep.module.05.source">libs-back</entry>
+    <entry key="gnustep.gnustep.module.05.target">back</entry>
 
-    <entry key="com.galenrhodes.gnustepbuilder.DefaultWorkingPath">~/Downloads/gnustep</entry>
+    <entry key="gnustep.llvm.host">http://llvm.org/svn/llvm-project/%s/trunk</entry>
+    <entry key="gnustep.llvm.type">svn</entry>
+    <entry key="gnustep.llvm.module.count">5</entry>
+    <entry key="gnustep.llvm.module.01.source">llvm</entry>
+    <entry key="gnustep.llvm.module.01.target">llvm</entry>
+    <entry key="gnustep.llvm.module.02.source">cfe</entry>
+    <entry key="gnustep.llvm.module.02.target">llvm/tools/clang</entry>
+    <entry key="gnustep.llvm.module.03.source">lldb</entry>
+    <entry key="gnustep.llvm.module.03.target">llvm/tools/lldb</entry>
+    <entry key="gnustep.llvm.module.04.source">compiler-rt</entry>
+    <entry key="gnustep.llvm.module.04.target">llvm/projects/compiler-rt</entry>
+    <entry key="gnustep.llvm.module.05.source">clang-tools-extra</entry>
+    <entry key="gnustep.llvm.module.05.target">llvm/tools/clang/tools/extra/clang-tools-extra</entry>
+
+
 
 </properties>
