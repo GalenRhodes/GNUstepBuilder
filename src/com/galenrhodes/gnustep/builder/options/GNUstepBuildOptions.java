@@ -10,6 +10,8 @@ public class GNUstepBuildOptions extends com.galenrhodes.gnustep.builder.options
 
     public static final LibraryComboEnum      DEFAULT_LIB_COMBO          = LibraryComboEnum.NG_GNU_GNU;
     public static final FileSystemLayoutsEnum DEFAULT_FILE_SYSTEM_LAYOUT = FileSystemLayoutsEnum.FHS;
+    public static final String                DEFAULT_WORKING_DIR        = "~/Downloads/gnustep/";
+    public static final String                DEFAULT_INSTALL_DIR        = "~/gnustep/";
 
     public synchronized String getCustomLibNameValue() {
         CustomLibNameType cln = getCustomLibName();
@@ -32,6 +34,12 @@ public class GNUstepBuildOptions extends com.galenrhodes.gnustep.builder.options
         catch(Exception e) { if(getLayout() == null) setLayout(DEFAULT_FILE_SYSTEM_LAYOUT); }
     }
 
+    @Override
+    public synchronized String getInstallDirectory() {
+        String dir = super.getInstallDirectory();
+        return Tools.fixFilePath(Tools.z(dir) ? DEFAULT_INSTALL_DIR : dir, true);
+    }
+
     public synchronized String getLibraryComboValue() {
         LibraryComboEnum lc = getLibraryCombo();
         return ((lc == null) ? DEFAULT_LIB_COMBO.value() : lc.value());
@@ -40,6 +48,12 @@ public class GNUstepBuildOptions extends com.galenrhodes.gnustep.builder.options
     public synchronized void setLibraryComboValue(String lc) {
         try { setLibraryCombo((lc == null) ? DEFAULT_LIB_COMBO : LibraryComboEnum.fromValue(lc)); }
         catch(Exception e) { if(getLibraryCombo() == null) setLibraryCombo(DEFAULT_LIB_COMBO); }
+    }
+
+    @Override
+    public synchronized String getWorkingDirectory() {
+        String dir = super.getWorkingDirectory();
+        return Tools.fixFilePath((Tools.z(dir) ? DEFAULT_WORKING_DIR : dir), true);
     }
 
     public synchronized boolean hasCustomLibName() {
@@ -98,6 +112,71 @@ public class GNUstepBuildOptions extends com.galenrhodes.gnustep.builder.options
         }
     }
 
+    @Override
+    public synchronized boolean isBuildClang() {
+        return Tools.ifNull(super.isBuildClang(), false);
+    }
+
+    @Override
+    public synchronized boolean isBuildGoogleTest() {
+        return Tools.ifNull(super.isBuildGoogleTest(), false);
+    }
+
+    @Override
+    public synchronized boolean isBuildLibDispatchFirst() {
+        return Tools.ifNull(super.isBuildLibDispatchFirst(), false);
+    }
+
+    @Override
+    public synchronized boolean isBuildMakeTwice() {
+        return Tools.ifNull(super.isBuildMakeTwice(), false);
+    }
+
+    @Override
+    public synchronized boolean isCreateEntriesInLdSoConfD() {
+        return Tools.ifNull(super.isCreateEntriesInLdSoConfD(), false);
+    }
+
+    @Override
+    public synchronized boolean isDebugByDefault() {
+        return Tools.ifNull(super.isDebugByDefault(), false);
+    }
+
+    @Override
+    public synchronized boolean isInstallLibkqueue() {
+        return Tools.ifNull(super.isInstallLibkqueue(), false);
+    }
+
+    @Override
+    public synchronized boolean isInstallPrerequisiteSoftware() {
+        return Tools.ifNull(super.isInstallPrerequisiteSoftware(), false);
+    }
+
+    @Override
+    public synchronized boolean isNativeObjectiveCExceptions() {
+        return Tools.ifNull(super.isNativeObjectiveCExceptions(), false);
+    }
+
+    @Override
+    public synchronized boolean isNoMixedABI() {
+        return Tools.ifNull(super.isNoMixedABI(), false);
+    }
+
+    @Override
+    public synchronized boolean isNonFragileABI() {
+        return Tools.ifNull(super.isNonFragileABI(), false);
+    }
+
+    @Override
+    public synchronized boolean isObjectiveCArc() {
+        return Tools.ifNull(super.isObjectiveCArc(), false);
+    }
+
+    @Override
+    public synchronized boolean isOldABICompat() {
+        return Tools.ifNull(super.isOldABICompat(), false);
+    }
+
     public synchronized boolean isRtVer1_8()        { return (getRuntimeABI() == RuntimeABIEnum.GNU); }
 
     public synchronized void setRtVer1_8(boolean b) { if(b) setRuntimeABI(RuntimeABIEnum.GNU); }
@@ -110,80 +189,15 @@ public class GNUstepBuildOptions extends com.galenrhodes.gnustep.builder.options
 
     public synchronized void setRtVer2_0(boolean b) { if(b) setRuntimeABI(RuntimeABIEnum.V2_0); }
 
+    @Override
+    public synchronized boolean isUseSwiftLibDispatch() {
+        return Tools.ifNull(super.isUseSwiftLibDispatch(), false);
+    }
+
     public synchronized void setHasCustomLibName(boolean b) {
         CustomLibNameType cln = getCustomLibName();
         if(cln == null) setCustomLibName(cln = new CustomLibNameType());
         cln.setSelected(b);
-    }
-
-    @Override
-    public synchronized Boolean isInstallPrerequisiteSoftware() {
-        return Tools.ifNull(super.isInstallPrerequisiteSoftware(), false);
-    }
-
-    @Override
-    public synchronized Boolean isInstallLibkqueue() {
-        return Tools.ifNull(super.isInstallLibkqueue(), false);
-    }
-
-    @Override
-    public synchronized Boolean isCreateEntriesInLdSoConfD() {
-        return Tools.ifNull(super.isCreateEntriesInLdSoConfD(), false);
-    }
-
-    @Override
-    public synchronized Boolean isBuildClang() {
-        return Tools.ifNull(super.isBuildClang(), false);
-    }
-
-    @Override
-    public synchronized Boolean isBuildGoogleTest() {
-        return Tools.ifNull(super.isBuildGoogleTest(), false);
-    }
-
-    @Override
-    public synchronized Boolean isUseSwiftLibDispatch() {
-        return Tools.ifNull(super.isUseSwiftLibDispatch(), false);
-    }
-
-    @Override
-    public synchronized Boolean isBuildLibDispatchFirst() {
-        return Tools.ifNull(super.isBuildLibDispatchFirst(), false);
-    }
-
-    @Override
-    public synchronized Boolean isOldABICompat() {
-        return Tools.ifNull(super.isOldABICompat(), false);
-    }
-
-    @Override
-    public synchronized Boolean isBuildMakeTwice() {
-        return Tools.ifNull(super.isBuildMakeTwice(), false);
-    }
-
-    @Override
-    public synchronized Boolean isNoMixedABI() {
-        return Tools.ifNull(super.isNoMixedABI(), false);
-    }
-
-    @Override
-    public synchronized Boolean isNonFragileABI() {
-        return Tools.ifNull(super.isNonFragileABI(), false);
-    }
-
-    @Override
-    public synchronized Boolean isObjectiveCArc() {
-        return Tools.ifNull(super.isObjectiveCArc(), false);
-    }
-
-    @Override
-    public synchronized Boolean isDebugByDefault() {
-        return Tools.ifNull(super.isDebugByDefault(), false);
-    }
-
-    @Override
-    public synchronized Boolean isNativeObjectiveCExceptions() {
-        return Tools.ifNull(super.isNativeObjectiveCExceptions(), false);
     }
 
 }

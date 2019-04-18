@@ -15,6 +15,7 @@ import java.util.concurrent.Future;
 public class Tools {
 
     public static final String USER_HOME_PROPKEY = "user.home";
+    public static final String USER_HOME         = System.getProperty(USER_HOME_PROPKEY, "");
 
     private Tools() {}
 
@@ -34,21 +35,15 @@ public class Tools {
     }
 
     public static final String doFindDialog(String dir, String defaultDir, Component parent) {
-        if(z(dir)) dir = defaultDir;
-        dir = dir.trim().replace('\\', '/');
-        if(dir.startsWith("~/")) dir = (System.getProperty(USER_HOME_PROPKEY, "") + dir.substring(1));
-        if(dir.equals("~")) dir = (System.getProperty(USER_HOME_PROPKEY, "") + "/");
-        if(!dir.endsWith("/")) dir = dir + "/";
-
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fc.setSelectedFile(new File(dir));
-
-        return ((fc.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) ? foo(fc.getSelectedFile(), dir) : dir);
+        return _doFindPathDialog(fixFilePath((z(dir) ? defaultDir : dir), true), parent);
     }
 
-    public static boolean z(String dir) {
-        return ((dir == null) || (dir.trim().length() == 0));
+    public static final String fixFilePath(String filePath, boolean isDirectory) {
+        filePath = filePath.trim().replace('\\', '/');
+        if(filePath.equals("~")) filePath = USER_HOME;
+        else if(filePath.startsWith("~/")) filePath = (USER_HOME + filePath.substring(1));
+        boolean ews = filePath.endsWith("/");
+        return ((isDirectory) ? (ews ? filePath : (filePath + "/")) : (ews ? filePath.substring(0, (filePath.length() - 1)) : filePath)).replace('/', File.separatorChar);
     }
 
     public static final JFrame getFrame(Component c) {
@@ -99,6 +94,17 @@ public class Tools {
         List<Future<T>> f = new ArrayList<>();
         for(Callable<T> clb : c) f.add(exsvc.submit(clb));
         return f;
+    }
+
+    public static boolean z(String dir) {
+        return ((dir == null) || (dir.trim().length() == 0));
+    }
+
+    private static final String _doFindPathDialog(String dir, Component parent) {
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setSelectedFile(new File(dir));
+        return ((fc.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) ? foo(fc.getSelectedFile(), dir) : dir);
     }
 
     private static final String foo(File f, String def) {

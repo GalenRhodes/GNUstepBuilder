@@ -7,7 +7,15 @@
 
     <jaxb:bindings schemaLocation="GNUstepOptions.xsd" node="/xs:schema">
 
-        <jaxb:bindings node="xs:simpleType[@name='RuntimeABIEnum']">
+        <jaxb:bindings node="//xs:simpleType[@name='PrereqSystemEnum']">
+            <jaxb:typesafeEnumClass name="PrereqSystemEnum">
+                <jaxb:typesafeEnumMember name="DEBIAN" value="Debian"/>
+                <jaxb:typesafeEnumMember name="FEDORA" value="Fedora"/>
+                <jaxb:typesafeEnumMember name="FREE_BSD" value="Free-BSD"/>
+            </jaxb:typesafeEnumClass>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="//xs:simpleType[@name='RuntimeABIEnum']">
             <jaxb:typesafeEnumClass name="RuntimeABIEnum">
                 <jaxb:typesafeEnumMember name="GNU" value="GNU"/>
                 <jaxb:typesafeEnumMember name="V1_9" value="1.9"/>
@@ -15,7 +23,7 @@
             </jaxb:typesafeEnumClass>
         </jaxb:bindings>
 
-        <jaxb:bindings node="xs:simpleType[@name='LibraryComboEnum']">
+        <jaxb:bindings node="//xs:simpleType[@name='LibraryComboEnum']">
             <jaxb:typesafeEnumClass name="LibraryComboEnum">
                 <jaxb:typesafeEnumMember name="NG_GNU_GNU" value="ng-gnu-gnu"/>
                 <jaxb:typesafeEnumMember name="GNU_GNU_GNU" value="gnu-gnu-gnu"/>
@@ -23,7 +31,7 @@
             </jaxb:typesafeEnumClass>
         </jaxb:bindings>
 
-        <jaxb:bindings node="xs:simpleType[@name='FileSystemLayoutsEnum']">
+        <jaxb:bindings node="//xs:simpleType[@name='FileSystemLayoutsEnum']">
             <jaxb:typesafeEnumClass name="FileSystemLayoutsEnum">
                 <jaxb:typesafeEnumMember name="FHS" value="fhs"/>
                 <jaxb:typesafeEnumMember name="FHS_SYSTEM" value="fhs-system"/>

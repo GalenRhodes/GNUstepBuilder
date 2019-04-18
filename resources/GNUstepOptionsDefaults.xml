@@ -149,4 +149,37 @@
         </SourceLocations>
     </Modules>
 
+    <Prerequisits>
+        <Systems>
+            <System>Debian</System>
+            <Packages>clang</Packages>
+            <Packages>build-essential</Packages>
+            <Packages>git</Packages>
+            <Packages>subversion</Packages>
+            <Packages>ninja-build</Packages>
+            <Packages>cmake</Packages>
+            <Packages>libffi-dev</Packages>
+            <Packages>libxml2-dev</Packages>
+            <Packages>libgnutls28-dev</Packages>
+            <Packages>libicu-dev</Packages>
+            <Packages>libblocksruntime-dev</Packages>
+            <Packages>autoconf</Packages>
+            <Packages>libtool</Packages>
+            <Packages>libjpeg-dev</Packages>
+            <Packages>libtiff-dev</Packages>
+            <Packages>libffi-dev</Packages>
+            <Packages>libcairo2-dev</Packages>
+            <Packages>libx11-dev</Packages>
+            <Packages>libxt-dev</Packages>
+            <Packages>libxft-dev</Packages>
+            <Packages>python-dev</Packages>
+            <Packages>libncurses5-dev</Packages>
+            <Packages>doxygen</Packages>
+            <Packages>swig</Packages>
+            <Packages>libedit-dev</Packages>
+            <Packages condition="isInstallLibkqueue">libkqueue-dev</Packages>
+            <Packages condition="isInstallLibkqueue">libpthread-workqueue-dev</Packages>
+        </Systems>
+    </Prerequisits>
+
 </GNUstepOptions>
