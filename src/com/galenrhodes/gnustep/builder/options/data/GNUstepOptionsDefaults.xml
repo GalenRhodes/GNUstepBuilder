@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with XML Edita http://www.xmledita.com -->
 <GNUstepOptions xmlns="http://www.projectgalen.com/gnustepbuilder" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.projectgalen.com/gnustepbuilder file:///Users/grhodes/IdeaProjects/GNUstepBuilder/resources/GNUstepOptions.xsd">
+
     <WorkingDirectory>~/Downloads</WorkingDirectory>
     <InstallDirectory>~/gnustep</InstallDirectory>
     <InstallPrerequisiteSoftware>true</InstallPrerequisiteSoftware>
     <InstallLibkqueue>true</InstallLibkqueue>
     <CreateEntriesIn_ld_so_conf_d>true</CreateEntriesIn_ld_so_conf_d>
     <BuildClang>false</BuildClang>
-    <ClangTargets>
-        <x86_64>true</x86_64>
-        <arm32>true</arm32>
-        <arm64>true</arm64>
-    </ClangTargets>
     <BuildGoogleTest>false</BuildGoogleTest>
     <UseSwiftLibDispatch>true</UseSwiftLibDispatch>
     <BuildLibDispatchFirst>true</BuildLibDispatchFirst>
@@ -23,80 +19,134 @@
     <ObjectiveCArc>true</ObjectiveCArc>
     <DebugByDefault>true</DebugByDefault>
     <NativeObjectiveCExceptions>true</NativeObjectiveCExceptions>
-    <RuntimeABI>GNU</RuntimeABI>
+    <RuntimeABI>2.0</RuntimeABI>
     <LibraryCombo>ng-gnu-gnu</LibraryCombo>
     <Layout>fhs</Layout>
-    <SourceLocations>
-        <Name>GNUstep Command-line Fixer</Name>
-        <Description>Utility that cleans up the command-line arguments returned from gnustep-options.</Description>
-        <HostURL>https://github.com/GalenRhodes/%s.git</HostURL>
-        <Type>git</Type>
-        <Modules>
-            <SourcePath>GNUstepCCommandLineFixer</SourcePath>
-            <TargetPath>GNUstepCCommandLineFixer</TargetPath>
-            <Status>Downloading %s...</Status>
-        </Modules>
-    </SourceLocations>
-    <SourceLocations>
-        <Name>GNUstep</Name>
-        <Description>GNUstep</Description>
-        <HostURL>https://github.com/gnustep/%s.git</HostURL>
-        <Type>git</Type>
-        <Modules>
-            <SourcePath>libobjc2</SourcePath>
-            <TargetPath>libobjc2</TargetPath>
-            <Status>Downloading GNUstep Objective-C Runtime Library...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>tools-make</SourcePath>
-            <TargetPath>core/make</TargetPath>
-            <Status>Downloading GNUstep Objective-C Makefiles...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>libs-base</SourcePath>
-            <TargetPath>core/base</TargetPath>
-            <Status>Downloading GNUstep Objective-C Base Libraries...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>libs-gui</SourcePath>
-            <TargetPath>core/gui</TargetPath>
-            <Status>Downloading GNUstep Objective-C GUI Libraries...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>libs-back</SourcePath>
-            <TargetPath>core/back</TargetPath>
-            <Status>Downloading GNUstep Objective-C GUI Backend...</Status>
-        </Modules>
-    </SourceLocations>
-    <SourceLocations>
-        <Name>LLVM/Clang</Name>
-        <Description>The LLVM/Clang compiler.</Description>
-        <HostURL>http://llvm.org/svn/llvm-project/%s/trunk</HostURL>
-        <Type>svn</Type>
-        <Modules>
-            <SourcePath>llvm</SourcePath>
-            <TargetPath>llvm</TargetPath>
-            <Status>Downloading LLVM Core...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>cfe</SourcePath>
-            <TargetPath>llvm/tools/clang</TargetPath>
-            <Status>Downloading CLANG Core...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>lldb</SourcePath>
-            <TargetPath>llvm/tools/lldb</TargetPath>
-            <Status>Downloading LLVM Debugger...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>compiler-rt</SourcePath>
-            <TargetPath>llvm/projects/compiler-rt</TargetPath>
-            <Status>Downloading LLVM Compiler Runtime...</Status>
-        </Modules>
-        <Modules>
-            <SourcePath>clang-tools-extra</SourcePath>
-            <TargetPath>llvm/tools/clang/tools/extra/clang-tools-extra</TargetPath>
-            <Status>Downloading CLANG Extra Tools...</Status>
-        </Modules>
-    </SourceLocations>
+
+    <ClangTargets>
+        <x86_64>true</x86_64>
+        <arm32>false</arm32>
+        <arm64>false</arm64>
+    </ClangTargets>
+
+    <Modules>
+        <SourceLocations id="commandlinefixer">
+            <Name>GNUstep Command-line Fixer</Name>
+            <Description>Utility that cleans up the command-line arguments returned from gnustep-options.</Description>
+            <HostURL>https://github.com/GalenRhodes/%s.git</HostURL>
+            <Type>git</Type>
+
+            <Modules>
+                <SourcePath>GNUstepCCommandLineFixer</SourcePath>
+                <TargetPath>GNUstepCCommandLineFixer</TargetPath>
+                <Status>Downloading %s...</Status>
+            </Modules>
+
+        </SourceLocations>
+
+        <SourceLocations id="libdispatch-nick">
+            <Name>LibDispatch (Nick Hutchinson)</Name>
+            <Description>Version of libdispatch maintained by Nick Hutchinson.</Description>
+            <HostURL>https://github.com/nickhutchinson/%s.git</HostURL>
+            <Type>git</Type>
+
+            <Modules>
+                <SourcePath>libdispatch</SourcePath>
+                <TargetPath>libdispatch</TargetPath>
+                <Status>Downloading %s...</Status>
+            </Modules>
+
+        </SourceLocations>
+
+        <SourceLocations id="libdispatch-swift">
+            <Name>LibDispatch (Swift Project)</Name>
+            <Description>Version of libdispatch maintained by the Swift Open Source Project.</Description>
+            <HostURL>https://github.com/apple/%s.git</HostURL>
+            <Type>git</Type>
+
+            <Modules>
+                <SourcePath>swift-corelibs-libdispatch</SourcePath>
+                <TargetPath>libdispatch</TargetPath>
+                <Status>Downloading %s...</Status>
+            </Modules>
+
+        </SourceLocations>
+
+        <SourceLocations id="gnustep">
+            <Name>GNUstep</Name>
+            <Description>GNUstep</Description>
+            <HostURL>https://github.com/gnustep/%s.git</HostURL>
+            <Type>git</Type>
+
+            <Modules>
+                <SourcePath>libobjc2</SourcePath>
+                <TargetPath>libobjc2</TargetPath>
+                <Status>Downloading GNUstep Objective-C Runtime Library...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>tools-make</SourcePath>
+                <TargetPath>core/make</TargetPath>
+                <Status>Downloading GNUstep Objective-C Makefiles...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>libs-base</SourcePath>
+                <TargetPath>core/base</TargetPath>
+                <Status>Downloading GNUstep Objective-C Base Libraries...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>libs-gui</SourcePath>
+                <TargetPath>core/gui</TargetPath>
+                <Status>Downloading GNUstep Objective-C GUI Libraries...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>libs-back</SourcePath>
+                <TargetPath>core/back</TargetPath>
+                <Status>Downloading GNUstep Objective-C GUI Backend...</Status>
+            </Modules>
+
+        </SourceLocations>
+
+        <SourceLocations id="clang">
+            <Name>LLVM/Clang</Name>
+            <Description>The LLVM/Clang compiler.</Description>
+            <HostURL>http://llvm.org/svn/llvm-project/%s/trunk</HostURL>
+            <Type>svn</Type>
+
+            <Modules>
+                <SourcePath>llvm</SourcePath>
+                <TargetPath>llvm</TargetPath>
+                <Status>Downloading LLVM Core...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>cfe</SourcePath>
+                <TargetPath>llvm/tools/clang</TargetPath>
+                <Status>Downloading CLANG Core...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>lldb</SourcePath>
+                <TargetPath>llvm/tools/lldb</TargetPath>
+                <Status>Downloading LLVM Debugger...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>compiler-rt</SourcePath>
+                <TargetPath>llvm/projects/compiler-rt</TargetPath>
+                <Status>Downloading LLVM Compiler Runtime...</Status>
+            </Modules>
+
+            <Modules>
+                <SourcePath>clang-tools-extra</SourcePath>
+                <TargetPath>llvm/tools/clang/tools/extra/clang-tools-extra</TargetPath>
+                <Status>Downloading CLANG Extra Tools...</Status>
+            </Modules>
+
+        </SourceLocations>
+    </Modules>
+
 </GNUstepOptions>

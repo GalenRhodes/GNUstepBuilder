@@ -1,87 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gsr="http://www.projectgalen.com/gnustepbuilder" elementFormDefault="qualified" xml:lang="EN" version="1.0" targetNamespace="http://www.projectgalen.com/gnustepbuilder">
     <xs:complexType name="GNUstepOptions">
+        <xs:all>
+            <xs:element name="WorkingDirectory" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="InstallDirectory" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="InstallPrerequisiteSoftware" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"/>
+            <xs:element name="InstallLibkqueue" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="CreateEntriesIn_ld_so_conf_d" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"/>
+            <xs:element name="BuildClang" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="ClangTargets" minOccurs="1" maxOccurs="1" type="gsr:ClangTargetsType"/>
+            <xs:element name="BuildGoogleTest" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="UseSwiftLibDispatch" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="BuildLibDispatchFirst" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="OldABICompat" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="CustomLibName" minOccurs="0" maxOccurs="1" type="gsr:CustomLibNameType"/>
+            <xs:element name="BuildMakeTwice" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="NoMixedABI" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="NonFragileABI" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="ObjectiveCArc" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="DebugByDefault" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="NativeObjectiveCExceptions" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="RuntimeABI" minOccurs="1" maxOccurs="1" type="gsr:RuntimeABIEnum" default="2.0"/>
+            <xs:element name="LibraryCombo" minOccurs="1" maxOccurs="1" type="gsr:LibraryComboEnum" default="ng-gnu-gnu"/>
+            <xs:element name="Layout" minOccurs="1" maxOccurs="1" type="gsr:FileSystemLayoutsEnum" default="fhs"/>
+            <xs:element name="Modules" minOccurs="0" maxOccurs="1" type="gsr:Modules"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="Modules">
         <xs:sequence>
-            <xs:element name="WorkingDirectory" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="InstallDirectory" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="InstallPrerequisiteSoftware" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"></xs:element>
-            <xs:element name="InstallLibkqueue" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="CreateEntriesIn_ld_so_conf_d" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"></xs:element>
-            <xs:element name="BuildClang" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="ClangTargets" minOccurs="1" maxOccurs="1" type="gsr:ClangTargetsType"></xs:element>
-            <xs:element name="BuildGoogleTest" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="UseSwiftLibDispatch" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="BuildLibDispatchFirst" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="OldABICompat" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="CustomLibName" minOccurs="0" maxOccurs="1" type="gsr:CustomLibNameType"></xs:element>
-            <xs:element name="BuildMakeTwice" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="NoMixedABI" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="NonFragileABI" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="ObjectiveCArc" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="DebugByDefault" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="NativeObjectiveCExceptions" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="RuntimeABI" minOccurs="1" maxOccurs="1" type="gsr:RuntimeABIEnum" default="2.0"></xs:element>
-            <xs:element name="LibraryCombo" minOccurs="1" maxOccurs="1" type="gsr:LibraryComboEnum" default="ng-gnu-gnu"></xs:element>
-            <xs:element name="Layout" minOccurs="1" maxOccurs="1" type="gsr:FileSystemLayoutsEnum" default="fhs"></xs:element>
-            <xs:element name="SourceLocations" minOccurs="1" maxOccurs="unbounded" type="gsr:SourceLocation"></xs:element>
+            <xs:element name="SourceLocations" minOccurs="1" maxOccurs="unbounded" type="gsr:SourceLocation"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="ClangTargetsType">
         <xs:sequence>
-            <xs:element name="x86_64" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"></xs:element>
-            <xs:element name="arm32" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
-            <xs:element name="arm64" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"></xs:element>
+            <xs:element name="x86_64" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+            <xs:element name="arm32" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+            <xs:element name="arm64" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="CustomLibNameType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="selected" use="optional" type="xs:boolean" default="true"></xs:attribute>
+                <xs:attribute name="selected" use="optional" type="xs:boolean" default="true"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
     <xs:simpleType name="RuntimeABIEnum">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="GNU"></xs:enumeration>
-            <xs:enumeration value="1.9"></xs:enumeration>
-            <xs:enumeration value="2.0"></xs:enumeration>
+            <xs:enumeration value="GNU"/>
+            <xs:enumeration value="1.9"/>
+            <xs:enumeration value="2.0"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="FileSystemLayoutsEnum">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="fhs"></xs:enumeration>
-            <xs:enumeration value="fhs-system"></xs:enumeration>
-            <xs:enumeration value="gnustep"></xs:enumeration>
-            <xs:enumeration value="gnustep-with-network"></xs:enumeration>
-            <xs:enumeration value="debian"></xs:enumeration>
-            <xs:enumeration value="apple"></xs:enumeration>
-            <xs:enumeration value="mac"></xs:enumeration>
-            <xs:enumeration value="next"></xs:enumeration>
-            <xs:enumeration value="standalone"></xs:enumeration>
+            <xs:enumeration value="fhs"/>
+            <xs:enumeration value="fhs-system"/>
+            <xs:enumeration value="gnustep"/>
+            <xs:enumeration value="gnustep-with-network"/>
+            <xs:enumeration value="debian"/>
+            <xs:enumeration value="apple"/>
+            <xs:enumeration value="mac"/>
+            <xs:enumeration value="next"/>
+            <xs:enumeration value="standalone"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="LibraryComboEnum">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="ng-gnu-gnu"></xs:enumeration>
-            <xs:enumeration value="gnu-gnu-gnu"></xs:enumeration>
-            <xs:enumeration value="apple-apple-apple"></xs:enumeration>
+            <xs:enumeration value="ng-gnu-gnu"/>
+            <xs:enumeration value="gnu-gnu-gnu"/>
+            <xs:enumeration value="apple-apple-apple"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="SourceLocation">
         <xs:sequence>
-            <xs:element name="Name" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="Description" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="HostURL" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
-            <xs:element name="Modules" minOccurs="1" maxOccurs="unbounded" type="gsr:SourceLocationModule"></xs:element>
+            <xs:element name="Name" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Description" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="HostURL" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Modules" minOccurs="1" maxOccurs="unbounded" type="gsr:SourceLocationModule"/>
         </xs:sequence>
+        <xs:attribute name="id" use="required" type="xs:string"/>
     </xs:complexType>
     <xs:complexType name="SourceLocationModule">
         <xs:sequence>
-            <xs:element name="SourcePath" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="TargetPath" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-            <xs:element name="Status" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+            <xs:element name="SourcePath" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="TargetPath" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="Status" minOccurs="1" maxOccurs="1" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:element name="GNUstepOptions" type="gsr:GNUstepOptions"></xs:element>
+    <xs:element name="GNUstepOptions" type="gsr:GNUstepOptions"/>
 </xs:schema>
